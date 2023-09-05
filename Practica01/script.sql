@@ -17,11 +17,11 @@ CREATE VIEW ColaboracionProyecto AS
 SELECT Proyecto.numProy, Proyecto.nombreProy, COUNT(Colaborar.curp) as numEmpleados, sum(Colaborar.numHoras) as numHoras
 FROM Proyecto JOIN Colaborar ON Proyecto.numProy = Colaborar.numProy GROUP BY Proyecto.numProy,  Proyecto.nombreProy;
 
----------------------------------------
---------- Ejercicio 4 -----------------
----------------------------------------
+--------------------------
+---- Cuarto ejercicio ----
+--------------------------
 
--- lista_empleados --------------------
+----- lista_empleados ----
 
 -- No se puede insertar el valor NULL en la columna 'numDepto'. La columna no admite valores NULL. 
 INSERT INTO lista_empleados (curp, nombre, materno, paterno)
@@ -52,3 +52,24 @@ SET numEmpleados = 20
 WHERE numProy = 1;
 
 
+--------------------------
+---- Sexto ejercicio ----
+--------------------------
+
+------------- lista empleados --------------
+CREATE VIEW vm_lista_empleados WITH SCHEMABINDING AS
+SELECT curp,nombre,materno,paterno
+from dbo.Empleado;
+
+CREATE UNIQUE CLUSTERED INDEX vm_lista_empleados1 ON
+	dbo.vm_lista_empleados();
+
+---------- colaboración proyecto ------------
+CREATE VIEW vm_ColaboracionProyecto WITH SCHEMABINDING AS
+SELECT Proyecto.numProy, Proyecto.nombreProy,
+COUNT_BIG(*) as numEmpleados, SUM(Colaborar.numHoras) as numHoras
+FROM dbo.Proyecto JOIN dbo.Colaborar ON Proyecto.numProy = Colaborar.numProy
+GROUP BY Proyecto.numProy, Proyecto.nombreProy;
+
+CREATE UNIQUE CLUSTERED INDEX vm_ColaboracionProyecto1 ON
+	dbo.vm_ColaboracionProyecto(numProy);
