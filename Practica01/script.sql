@@ -36,6 +36,8 @@ UPDATE lista_empleados
 SET materno = 'Baron'
 WHERE curp = 'BNMR859072HIBZAN70';
 
+--------
+
 ------- ColaboracionProyecto ----------
 
 -- No puede actualizar ni insertar la vista o función 'ColaboracionProyecto' porque contiene un campo derivado o constante.
@@ -57,12 +59,23 @@ WHERE numProy = 1;
 --------------------------
 
 ------------- lista empleados --------------
+
 CREATE VIEW vm_lista_empleados WITH SCHEMABINDING AS
 SELECT curp,nombre,materno,paterno
 from dbo.Empleado;
 
 CREATE UNIQUE CLUSTERED INDEX vm_lista_empleados1 ON
 	dbo.vm_lista_empleados();
+
+------- Empleados departamentos -------
+
+CREATE VIEW vm_empleados_departamentos WITH SCHEMABINDING AS
+SELECT curp, nombre, paterno, materno, genero, nacimiento, ciudad, calle, cp, D.numDepto, nombreDepto, fecha
+FROM dbo.Empleado E JOIN dbo.Departamento D
+ON E.NumDepto = D.NumDepto;
+
+CREATE UNIQUE CLUSTERED INDEX vm_empleados_departamentos1 ON
+	dbo.vm_empleados_departamentos(curp);
 
 ---------- colaboración proyecto ------------
 CREATE VIEW vm_ColaboracionProyecto WITH SCHEMABINDING AS
