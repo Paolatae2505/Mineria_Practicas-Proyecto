@@ -9,6 +9,13 @@ from Empleado;
 SELECT * from lista_empleados 
 WHERE nombre LIKE 'A%';
 
+--------------------------
+-- Tercer Ejercicio ------
+--------------------------
+
+CREATE VIEW ColaboracionProyecto AS
+SELECT Proyecto.numProy, Proyecto.nombreProy, COUNT(Colaborar.curp) as numEmpleados, sum(Colaborar.numHoras) as numHoras
+FROM Proyecto JOIN Colaborar ON Proyecto.numProy = Colaborar.numProy GROUP BY Proyecto.numProy,  Proyecto.nombreProy;
 
 ---------------------------------------
 --------- Ejercicio 4 -----------------
