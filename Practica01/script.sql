@@ -10,6 +10,15 @@ SELECT * from lista_empleados
 WHERE nombre LIKE 'A%';
 
 --------------------------
+-- Segundo Ejercicio -----
+--------------------------
+
+CREATE VIEW empleados_departamentos AS
+SELECT curp, nombre, paterno, materno, genero, nacimiento, ciudad, calle, cp, D.numDepto, nombreDepto, fecha
+FROM Empleado E JOIN Departamento D
+ON E.numDepto = D.numDepto;
+
+--------------------------
 -- Tercer Ejercicio ------
 --------------------------
 
