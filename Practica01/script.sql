@@ -87,14 +87,14 @@ SELECT curp,nombre,materno,paterno
 from dbo.Empleado;
 
 CREATE UNIQUE CLUSTERED INDEX vm_lista_empleados1 ON
-	dbo.vm_lista_empleados();
-
+	dbo.vm_lista_empleados(curp);
+-- No se puede insertar el valor NULL en la columna 'numDepto', tabla 'Prueba2.dbo.Empleado'. La columna no admite valores NULL. Error de INSERT
 INSERT INTO vm_lista_empleados (curp, nombre, materno, paterno)
 VALUES ('BAHV981101MDFRRC03', 'Victoria', 'Herrera', 'Baron');
-
+-- Funciono
 DELETE FROM vm_lista_empleados
 WHERE curp = 'ACWU948539FDBQAR18';
-
+---- Funciono
 UPDATE vm_lista_empleados
 SET materno = 'Baron'
 WHERE curp = 'BNMR859072HIBZAN70';
@@ -113,7 +113,7 @@ CREATE UNIQUE CLUSTERED INDEX vm_empleados_departamentos1 ON
 INSERT INTO vm_empleados_departamentos (curp, nombre, paterno, materno, genero, nacimiento, ciudad, calle, cp, numDepto, nombreDepto, fecha)
 VALUES ('BAHV991101MDFRRC83', 'Alejandra', 'Macias', 'Hernandez', 'M', '1999-11-01', 'CDMX', 'Fernandi', '15900', 1, 'NuevoDepartamento', '2023-09-05');
 
---- funciono
+--- Funciono
 UPDATE vm_empleados_departamentos
 SET nombre = 'José'
 WHERE curp = 'AEIJ737629FVKUMX27';
