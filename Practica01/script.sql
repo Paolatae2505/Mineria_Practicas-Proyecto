@@ -89,6 +89,16 @@ from dbo.Empleado;
 CREATE UNIQUE CLUSTERED INDEX vm_lista_empleados1 ON
 	dbo.vm_lista_empleados();
 
+INSERT INTO vm_lista_empleados (curp, nombre, materno, paterno)
+VALUES ('BAHV981101MDFRRC03', 'Victoria', 'Herrera', 'Baron');
+
+DELETE FROM vm_lista_empleados
+WHERE curp = 'ACWU948539FDBQAR18';
+
+UPDATE vm_lista_empleados
+SET materno = 'Baron'
+WHERE curp = 'BNMR859072HIBZAN70';
+
 ------- Empleados departamentos -------
 
 CREATE VIEW vm_empleados_departamentos WITH SCHEMABINDING AS
@@ -99,6 +109,20 @@ ON E.NumDepto = D.NumDepto;
 CREATE UNIQUE CLUSTERED INDEX vm_empleados_departamentos1 ON
 	dbo.vm_empleados_departamentos(curp);
 
+--- La vista o función 'vm_empleados_departamentos' no es actualizable porque la modificación afecta a varias tablas base.
+INSERT INTO vm_empleados_departamentos (curp, nombre, paterno, materno, genero, nacimiento, ciudad, calle, cp, numDepto, nombreDepto, fecha)
+VALUES ('BAHV991101MDFRRC83', 'Alejandra', 'Macias', 'Hernandez', 'M', '1999-11-01', 'CDMX', 'Fernandi', '15900', 1, 'NuevoDepartamento', '2023-09-05');
+
+--- funciono
+UPDATE vm_empleados_departamentos
+SET nombre = 'José'
+WHERE curp = 'AEIJ737629FVKUMX27';
+
+--La vista o función 'vm_empleados_departamentos' no es actualizable porque la modificación afecta a varias tablas base.
+DELETE FROM vm_empleados_departamentos
+WHERE curp = 'AEIJ737629FVKUMX27';
+
+
 ---------- colaboración proyecto ------------
 CREATE VIEW vm_ColaboracionProyecto WITH SCHEMABINDING AS
 SELECT Proyecto.numProy, Proyecto.nombreProy,
@@ -108,3 +132,16 @@ GROUP BY Proyecto.numProy, Proyecto.nombreProy;
 
 CREATE UNIQUE CLUSTERED INDEX vm_ColaboracionProyecto1 ON
 	dbo.vm_ColaboracionProyecto(numProy);
+
+-- No puede actualizar ni insertar la vista o función 'vm_ColaboracionProyecto' porque contiene un campo derivado o constante.
+INSERT INTO vm_ColaboracionProyecto (numProy, nombreProy, numEmpleados, numHoras)
+VALUES (502, 'ProyectoNuevo', 5, 100);
+
+-- La vista o función 'vm_ColaboracionProyecto' no es actualizable porque la modificación afecta a varias tablas base.
+DELETE FROM vm_ColaboracionProyecto
+WHERE numProy = 1;
+
+-- No puede actualizar ni insertar la vista o función 'vm_ColaboracionProyecto' porque contiene un campo derivado o constante.
+UPDATE vm_ColaboracionProyecto
+SET numEmpleados = 20
+WHERE numProy = 1
