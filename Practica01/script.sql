@@ -36,7 +36,20 @@ UPDATE lista_empleados
 SET materno = 'Baron'
 WHERE curp = 'BNMR859072HIBZAN70';
 
---------
+-------- empleados_departamentos ------
+
+--La vista o función 'empleados_departamentos' no es actualizable porque la modificación afecta a varias tablas base.
+INSERT INTO empleados_departamentos (curp, nombre, paterno, materno, genero, nacimiento, ciudad, calle, cp, numDepto, nombreDepto, fecha)
+VALUES ('BAHV991101MDFRRC83', 'Alejandra', 'Macias', 'Hernandez', 'M', '1999-11-01', 'CDMX', 'Fernandi', '15900', 1, 'NuevoDepartamento', '2023-09-05');
+
+-- Funciona
+UPDATE empleados_departamentos
+SET nombre = 'José'
+WHERE curp = 'AEIJ737629FVKUMX27';
+
+-- La vista o función 'empleados_departamentos' no es actualizable porque la modificación afecta a varias tablas base.
+DELETE FROM empleados_departamentos
+WHERE curp = 'AEIJ737629FVKUMX27';
 
 ------- ColaboracionProyecto ----------
 
