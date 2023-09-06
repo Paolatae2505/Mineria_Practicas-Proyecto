@@ -104,7 +104,7 @@ WHERE curp = 'BNMR859072HIBZAN70';
 CREATE VIEW vm_empleados_departamentos WITH SCHEMABINDING AS
 SELECT curp, nombre, paterno, materno, genero, nacimiento, ciudad, calle, cp, D.numDepto, nombreDepto, fecha
 FROM dbo.Empleado E JOIN dbo.Departamento D
-ON E.NumDepto = D.NumDepto;
+ON E.numDepto = D.numDepto;
 
 CREATE UNIQUE CLUSTERED INDEX vm_empleados_departamentos1 ON
 	dbo.vm_empleados_departamentos(curp);
