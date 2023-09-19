@@ -1,0 +1,3126 @@
+<?xml version="1.0"?>
+<DTS:Executable
+  DTS:refId="Package" xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:CreatorName="Engineer-PC\Engineer"
+  DTS:CreatorComputerName="ENGINEER-PC"
+  DTS:CreationDate="9/19/2023 10:56:42 AM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{C0F8995F-4698-40DB-BE61-88A0F68CBE1E}"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Package"
+  DTS:DTSID="{40A47E8D-033D-4E96-A005-C7F0C09EB9F3}"
+  DTS:CreationName="SSIS.Package.3">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones de archivos planos]"
+      DTS:ObjectName="Administrador de conexiones de archivos planos"
+      DTS:DTSID="{3BD2DAA9-B006-4379-B6F3-8AC757F16988}"
+      DTS:CreationName="FLATFILE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2058"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\VBOXSVR\CarpetaCompartidaSQLServer\Viajeros.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="curp"
+              DTS:DTSID="{CE8DCE65-945F-46A9-9094-DD9D50BEDF57}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="nombre"
+              DTS:DTSID="{AD179E12-C766-43F0-B7BD-5EE1B1B4EA8F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="apellidoPaterno"
+              DTS:DTSID="{1E6C7C03-57F9-46A3-A1BD-A2B05A3F15EF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="apellidoMaterno"
+              DTS:DTSID="{8A4D9A24-5FE0-435B-AD2F-2859C1895911}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fecha"
+              DTS:DTSID="{F60EE843-AAA1-40BF-9395-1EDA36914F67}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones de archivos planos 1]"
+      DTS:ObjectName="Administrador de conexiones de archivos planos 1"
+      DTS:DTSID="{7B9E27EF-EA65-4492-9BCC-61A715A3107D}"
+      DTS:CreationName="FLATFILE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2058"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\VBOXSVR\CarpetaCompartidaSQLServer\Viajeros2.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="curp"
+              DTS:DTSID="{7DDEB22E-51D9-4F36-AB36-A953C450BF53}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="nombre"
+              DTS:DTSID="{56470E97-E2E2-420E-ADA1-BE48350B3ED9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="aPaterno"
+              DTS:DTSID="{A09FF807-CDEA-4BD1-961F-49DB661C5DFC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="aMaterno"
+              DTS:DTSID="{5F13738D-39ED-41EA-B774-F15B88E9DA45}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fechaNacimiento"
+              DTS:DTSID="{7DBA64C1-6340-4760-9514-18C6CEC36810}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones de archivos planos 2]"
+      DTS:ObjectName="Administrador de conexiones de archivos planos 2"
+      DTS:DTSID="{70883FFB-5AF8-4AFC-BBEC-DBE8E84DFF42}"
+      DTS:CreationName="FLATFILE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2058"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\VBOXSVR\CarpetaCompartidaSQLServer\Viajes.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="curp"
+              DTS:DTSID="{E627D367-B857-4721-99A2-705D827A1D50}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="idViaje"
+              DTS:DTSID="{8B0DFBA9-3D35-4B8A-A098-C753528C2B96}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="lugar"
+              DTS:DTSID="{0A325DAA-3093-490B-9A1F-21C77CAE427C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fecha"
+              DTS:DTSID="{B7E31ED9-54DF-479A-ADFC-E40084D61DC1}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones de archivos planos 3]"
+      DTS:ObjectName="Administrador de conexiones de archivos planos 3"
+      DTS:DTSID="{A2E140CD-EA82-4AC8-8423-1CD92F6A0722}"
+      DTS:CreationName="FLATFILE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2058"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\VBOXSVR\CarpetaCompartidaSQLServer\Viajes2.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="curp"
+              DTS:DTSID="{42EB0475-54E8-4DDA-AFD2-79AB5F16EF57}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="idViaje"
+              DTS:DTSID="{49525B18-6D13-433E-AD33-0EE1F0CCA949}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="destino"
+              DTS:DTSID="{8AD1E944-5B5B-463D-87F9-FC94227A0127}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fecha"
+              DTS:DTSID="{936AAD74-DE69-4C64-A476-82EC7554AD97}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ENGINEER-PC.P03]"
+      DTS:ObjectName="ENGINEER-PC.P03"
+      DTS:DTSID="{83B6163A-FDA9-49AC-8B96-7F742CD56DCE}"
+      DTS:CreationName="OLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ENGINEER-PC;Initial Catalog=P03;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Integracion viajes y viajeros"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Integracion viajes y viajeros"
+      DTS:DTSID="{B79BDCA4-4562-49F3-9835-530E1BBE6EB0}"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:CreationName="SSIS.Pipeline.3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Integracion viajes y viajeros\Combinación de mezcla"
+              name="Combinación de mezcla"
+              componentClassID="{14D43A4F-D7BD-489D-829E-6DE35750CFE4}"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              version="1"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="JoinType"
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  typeConverter="JoinType">0</property>
+                <property
+                  name="NumKeyColumns"
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación.">1</property>
+                <property
+                  name="TreatNullsAsEqual"
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales.">true</property>
+                <property
+                  name="MaxBuffersPerInput"
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo.">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                  name="Entrada izquierda de combinación de mezcla"
+                  hasSideEffects="true">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252"
+                      cachedSortKeyPosition="1" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[nombre]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[nombre]"
+                      cachedName="nombre"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[apellidoPaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoPaterno]"
+                      cachedName="apellidoPaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[apellidoMaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoMaterno]"
+                      cachedName="apellidoMaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[fecha]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[fecha]"
+                      cachedName="fecha"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                  name="Entrada derecha de combinación de mezcla"
+                  hasSideEffects="true">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252"
+                      cachedSortKeyPosition="1" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[idViaje]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[idViaje]"
+                      cachedName="idViaje"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[destino]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[destino]"
+                      cachedName="destino"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[fecha]"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[fecha]"
+                      cachedName="fecha"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                  name="Salida de combinación de mezcla"
+                  isSorted="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="InputColumnID"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[curp]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre]"
+                      name="nombre"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="InputColumnID"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[apellidoPaterno]"
+                      name="apellidoPaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[apellidoPaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="InputColumnID"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[apellidoPaterno]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[apellidoMaterno]"
+                      name="apellidoMaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[apellidoMaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="InputColumnID"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[apellidoMaterno]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fechaNacimiento]"
+                      name="fechaNacimiento"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fechaNacimiento]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="InputColumnID"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[idViaje]"
+                      name="idViaje"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[idViaje]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="InputColumnID"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[idViaje]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[destino]"
+                      name="destino"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[destino]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="InputColumnID"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[destino]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fechaViaje]"
+                      name="fechaViaje"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fechaViaje]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="InputColumnID"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Destino de SQL Server"
+              name="Destino de SQL Server"
+              componentClassID="{F452EAF3-5EF0-43F1-8067-09DDF0BC6316}"
+              description="Destino de SQL Server"
+              version="5"
+              contactInfo="Destino de SQL Server;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;5">
+              <properties>
+                <property
+                  name="DefaultCodePage"
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos.">1252</property>
+                <property
+                  name="AlwaysUseDefaultCodePage"
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir caracteres.">false</property>
+                <property
+                  name="BulkInsertTableName"
+                  dataType="System.String"
+                  description="El nombre del objeto de base de datos en el que copiar datos."
+                  expressionType="Notify">[InfoViajeros]</property>
+                <property
+                  name="BulkInsertCheckConstraints"
+                  dataType="System.Boolean"
+                  description="Especifica que todas las restricciones del objeto de destino se comprueben durante la operación de copia de datos. Corresponde a la opción CHECK_CONSTRAINTS de inserción masiva.">true</property>
+                <property
+                  name="BulkInsertFirstRow"
+                  dataType="System.Int32"
+                  description="Especifica el número de la primera fila para copiar. Corresponde a la opción FIRSTROW de inserción masiva."
+                  expressionType="Notify">-1</property>
+                <property
+                  name="BulkInsertFireTriggers"
+                  dataType="System.Boolean"
+                  description="Especifica que todos los desencadenadores de inserción definidos en el objeto de destino se van a ejecutar durante la copia de datos. Corresponde a la opción FIRE_TRIGGERS de inserción masiva.">false</property>
+                <property
+                  name="BulkInsertKeepIdentity"
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Corresponde a la opción KEEPIDENTITY de inserción masiva.">false</property>
+                <property
+                  name="BulkInsertKeepNulls"
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL copiado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Sólo se aplica si está activada la carga rápida.">false</property>
+                <property
+                  name="BulkInsertLastRow"
+                  dataType="System.Int32"
+                  description="Especifica el número de la última fila para copiar. Corresponde a la opción LASTROW de inserción masiva."
+                  expressionType="Notify">-1</property>
+                <property
+                  name="BulkInsertMaxErrors"
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de errores de sintaxis y de compilación que pueden producirse sin que se cancele la operación de copia. Cada fila que no se puede copiar se omite y se cuenta como un error. Corresponde a la opción MAXERRORS de inserción masiva.">-1</property>
+                <property
+                  name="BulkInsertOrder"
+                  dataType="System.String"
+                  description="Especifica cómo se ordenan los datos que se van a copiar. Corresponde a la opción ORDER de inserción masiva."
+                  expressionType="Notify"></property>
+                <property
+                  name="BulkInsertTablock"
+                  dataType="System.Boolean"
+                  description="Especifica que se adquiere un bloqueo de nivel de tabla durante toda la operación de copia de datos. Corresponde a la opción TABLOCK de inserción masiva.">true</property>
+                <property
+                  name="Timeout"
+                  dataType="System.Int32"
+                  description="Especifica en segundos el tiempo de espera del adaptador de destino de SQL antes de desactivarse si no hay ningún dato disponible para la inserción. Un valor 0 de tiempo de espera indica que no se agotará el tiempo de espera del adaptador de destino de SQL."
+                  expressionType="Notify">30</property>
+                <property
+                  name="MaxInsertCommitSize"
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos.">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Connections[OleDbConnection]"
+                  name="OleDbConnection"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  connectionManagerID="Package.ConnectionManagers[ENGINEER-PC.P03]"
+                  connectionManagerRefId="Package.ConnectionManagers[ENGINEER-PC.P03]" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server]"
+                  name="Entrada de destino de SQL Server"
+                  hasSideEffects="true">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[curp]"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252"
+                      cachedSortKeyPosition="1" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].Columns[nombre]"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre]"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[nombre]"
+                      cachedName="nombre"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].Columns[apellidoPaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[apellidoPaterno]"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[apellidoPaterno]"
+                      cachedName="apellidoPaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].Columns[apellidoMaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[apellidoMaterno]"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[apellidoMaterno]"
+                      cachedName="apellidoMaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].Columns[fechaNacimiento]"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fechaNacimiento]"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[fechaNacimiento]"
+                      cachedName="fechaNacimiento"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].Columns[idViaje]"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[idViaje]"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[idViaje]"
+                      cachedName="idViaje"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].Columns[destino]"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[destino]"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[destino]"
+                      cachedName="destino"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].Columns[fechaViaje]"
+                      lineageId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fechaViaje]"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[fechaViaje]"
+                      cachedName="fechaViaje"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[curp]"
+                      name="curp"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[nombre]"
+                      name="nombre"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[apellidoPaterno]"
+                      name="apellidoPaterno"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[apellidoMaterno]"
+                      name="apellidoMaterno"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[fechaNacimiento]"
+                      name="fechaNacimiento"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[idViaje]"
+                      name="idViaje"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[destino]"
+                      name="destino"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server].ExternalColumns[fechaViaje]"
+                      name="fechaViaje"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Mezclar"
+              name="Mezclar"
+              componentClassID="{36E0E750-2510-4776-AA6E-17EAE84FD63E}"
+              description="Combina las filas de varios flujos de datos ordenados en un solo flujo de datos ordenados. A diferencia de la combinación de mezcla, todas las filas fluyen hacia la salida. Por ejemplo, se combinan dos listas ordenadas de clientes en una sola lista ordenada. Si el orden no es importante, use la transformación Unión de todo. "
+              version="1"
+              contactInfo="Mezclar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <inputs>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 1]"
+                  name="Entrada de Mezclar 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 1].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252"
+                      cachedSortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[curp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 1].Columns[nombre]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[nombre]"
+                      cachedName="nombre"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[nombre]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 1].Columns[apellidoPaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[apellidoPaterno]"
+                      cachedName="apellidoPaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoPaterno]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 1].Columns[apellidoMaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[apellidoMaterno]"
+                      cachedName="apellidoMaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoMaterno]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 1].Columns[fecha]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[fecha]"
+                      cachedName="fecha"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[fecha]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 2]"
+                  name="Entrada de Mezclar 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 2].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252"
+                      cachedSortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[curp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 2].Columns[nombre]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre]"
+                      cachedName="nombre"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[nombre]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 2].Columns[aPaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[aPaterno]"
+                      cachedName="aPaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoPaterno]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 2].Columns[aMaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[aMaterno]"
+                      cachedName="aMaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoMaterno]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 2].Columns[fechaNacimiento]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[fechaNacimiento]"
+                      cachedName="fechaNacimiento"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[fecha]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1]"
+                  name="Salida de Mezclar 1"
+                  isSorted="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      sortKeyPosition="1" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[nombre]"
+                      name="nombre"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[nombre]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoPaterno]"
+                      name="apellidoPaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoPaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoMaterno]"
+                      name="apellidoMaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[apellidoMaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[fecha]"
+                      name="fecha"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1].Columns[fecha]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Mezclar 1"
+              name="Mezclar 1"
+              componentClassID="{36E0E750-2510-4776-AA6E-17EAE84FD63E}"
+              description="Combina las filas de varios flujos de datos ordenados en un solo flujo de datos ordenados. A diferencia de la combinación de mezcla, todas las filas fluyen hacia la salida. Por ejemplo, se combinan dos listas ordenadas de clientes en una sola lista ordenada. Si el orden no es importante, use la transformación Unión de todo. "
+              version="1"
+              contactInfo="Mezclar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <inputs>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 1]"
+                  name="Entrada de Mezclar 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 1].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252"
+                      cachedSortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[curp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 1].Columns[idViaje]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[idViaje]"
+                      cachedName="idViaje"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[idViaje]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 1].Columns[destino]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[destino]"
+                      cachedName="destino"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[destino]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 1].Columns[fecha]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[fecha]"
+                      cachedName="fecha"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[fecha]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 2]"
+                  name="Entrada de Mezclar 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 2].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252"
+                      cachedSortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[curp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 2].Columns[idViaje]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[idViaje]"
+                      cachedName="idViaje"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[idViaje]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 2].Columns[fecha]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[fecha]"
+                      cachedName="fecha"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[fecha]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 2].Columns[lugar]"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[lugar]"
+                      cachedName="lugar"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="OutputColumnLineageID"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de salida"
+                          containsID="true">#{Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[destino]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1]"
+                  name="Salida de Mezclar 1"
+                  isSorted="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      sortKeyPosition="1" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[idViaje]"
+                      name="idViaje"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[idViaje]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[destino]"
+                      name="destino"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[destino]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[fecha]"
+                      name="fecha"
+                      lineageId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1].Columns[fecha]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Ordenar"
+              name="Ordenar"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              version="1"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="EliminateDuplicates"
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados.">false</property>
+                <property
+                  name="MaximumThreads"
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Ordenar.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Inputs[Entrada de ordenación].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Inputs[Entrada de ordenación].Columns[nombre]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[nombre]"
+                      cachedName="nombre"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Inputs[Entrada de ordenación].Columns[apellidoPaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[apellidoPaterno]"
+                      cachedName="apellidoPaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Inputs[Entrada de ordenación].Columns[apellidoMaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[apellidoMaterno]"
+                      cachedName="apellidoMaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Inputs[Entrada de ordenación].Columns[fecha]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      cachedName="fecha"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación]"
+                  name="Salida de ordenación"
+                  isSorted="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[curp]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[nombre]"
+                      name="nombre"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[nombre]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[apellidoPaterno]"
+                      name="apellidoPaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[apellidoPaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[apellidoPaterno]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[apellidoMaterno]"
+                      name="apellidoMaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[apellidoMaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[apellidoMaterno]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[fecha]"
+                      name="fecha"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación].Columns[fecha]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Ordenar 1"
+              name="Ordenar 1"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              version="1"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="EliminateDuplicates"
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados.">false</property>
+                <property
+                  name="MaximumThreads"
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Ordenar 1.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Inputs[Entrada de ordenación].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Inputs[Entrada de ordenación].Columns[nombre]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[nombre]"
+                      cachedName="nombre"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Inputs[Entrada de ordenación].Columns[aPaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[aPaterno]"
+                      cachedName="aPaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Inputs[Entrada de ordenación].Columns[aMaterno]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[aMaterno]"
+                      cachedName="aMaterno"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Inputs[Entrada de ordenación].Columns[fechaNacimiento]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[fechaNacimiento]"
+                      cachedName="fechaNacimiento"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación]"
+                  name="Salida de ordenación"
+                  isSorted="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[curp]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre]"
+                      name="nombre"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[aPaterno]"
+                      name="aPaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[aPaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[aPaterno]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[aMaterno]"
+                      name="aMaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[aMaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[aMaterno]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[fechaNacimiento]"
+                      name="fechaNacimiento"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación].Columns[fechaNacimiento]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[fechaNacimiento]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Ordenar 2"
+              name="Ordenar 2"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              version="1"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="EliminateDuplicates"
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados.">false</property>
+                <property
+                  name="MaximumThreads"
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Ordenar 2.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 2.Inputs[Entrada de ordenación].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 2.Inputs[Entrada de ordenación].Columns[idViaje]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[idViaje]"
+                      cachedName="idViaje"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 2.Inputs[Entrada de ordenación].Columns[lugar]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[lugar]"
+                      cachedName="lugar"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 2.Inputs[Entrada de ordenación].Columns[fecha]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      cachedName="fecha"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación]"
+                  name="Salida de ordenación"
+                  isSorted="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[curp]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[idViaje]"
+                      name="idViaje"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[idViaje]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[idViaje]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[lugar]"
+                      name="lugar"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[lugar]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[lugar]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[fecha]"
+                      name="fecha"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación].Columns[fecha]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Ordenar 3"
+              name="Ordenar 3"
+              componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              version="1"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="EliminateDuplicates"
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados.">false</property>
+                <property
+                  name="MaximumThreads"
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Integracion viajes y viajeros\Ordenar 3.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 3.Inputs[Entrada de ordenación].Columns[curp]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      cachedName="curp"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 3.Inputs[Entrada de ordenación].Columns[idViaje]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[idViaje]"
+                      cachedName="idViaje"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 3.Inputs[Entrada de ordenación].Columns[destino]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[destino]"
+                      cachedName="destino"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 3.Inputs[Entrada de ordenación].Columns[fecha]"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      cachedName="fecha"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedCodepage="1252">
+                      <properties>
+                        <property
+                          name="NewComparisonFlags"
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres.">0</property>
+                        <property
+                          name="NewSortKeyPosition"
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna.">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación]"
+                  name="Salida de ordenación"
+                  isSorted="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[curp]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[idViaje]"
+                      name="idViaje"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[idViaje]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[idViaje]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[destino]"
+                      name="destino"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[destino]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[destino]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[fecha]"
+                      name="fecha"
+                      lineageId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación].Columns[fecha]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252">
+                      <properties>
+                        <property
+                          name="SortColumnId"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          containsID="true">#{Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Viajero"
+              name="Viajero"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              description="Origen de archivo plano"
+              localeId="2058"
+              usesDispositions="true"
+              version="1"
+              contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="RetainNulls"
+                  dataType="System.Boolean"
+                  description="Especifica si las columnas de longitud cero se tratan como NULL.">false</property>
+                <property
+                  name="FileNameColumnName"
+                  dataType="System.String"
+                  description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Integracion viajes y viajeros\Viajero.Connections[FlatFileConnection]"
+                  name="FlatFileConnection"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones de archivos planos]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones de archivos planos]" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano]"
+                  name="Salida de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[curp]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[nombre]"
+                      name="nombre"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[nombre]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[nombre]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[apellidoPaterno]"
+                      name="apellidoPaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[apellidoPaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[apellidoPaterno]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[apellidoMaterno]"
+                      name="apellidoMaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[apellidoMaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[apellidoMaterno]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      name="fecha"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[fecha]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[curp]"
+                      name="curp"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[nombre]"
+                      name="nombre"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[apellidoPaterno]"
+                      name="apellidoPaterno"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[apellidoMaterno]"
+                      name="apellidoMaterno"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano].ExternalColumns[fecha]"
+                      name="fecha"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de error de origen de archivo plano]"
+                  name="Salida de error de origen de archivo plano"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      name="Columna de salida de error de origen de archivo plano"
+                      description="Columna de salida de error de origen de archivo plano"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      dataType="text"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Viajeros"
+              name="Viajeros"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              description="Origen de archivo plano"
+              localeId="2058"
+              usesDispositions="true"
+              version="1"
+              contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="RetainNulls"
+                  dataType="System.Boolean"
+                  description="Especifica si las columnas de longitud cero se tratan como NULL.">false</property>
+                <property
+                  name="FileNameColumnName"
+                  dataType="System.String"
+                  description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Integracion viajes y viajeros\Viajeros.Connections[FlatFileConnection]"
+                  name="FlatFileConnection"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones de archivos planos 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones de archivos planos 1]" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano]"
+                  name="Salida de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[curp]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[nombre]"
+                      name="nombre"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[nombre]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[nombre]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[aPaterno]"
+                      name="aPaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[aPaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[aPaterno]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[aMaterno]"
+                      name="aMaterno"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[aMaterno]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[aMaterno]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[fechaNacimiento]"
+                      name="fechaNacimiento"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].Columns[fechaNacimiento]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[fechaNacimiento]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[curp]"
+                      name="curp"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[nombre]"
+                      name="nombre"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[aPaterno]"
+                      name="aPaterno"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[aMaterno]"
+                      name="aMaterno"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano].ExternalColumns[fechaNacimiento]"
+                      name="fechaNacimiento"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de error de origen de archivo plano]"
+                  name="Salida de error de origen de archivo plano"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      name="Columna de salida de error de origen de archivo plano"
+                      description="Columna de salida de error de origen de archivo plano"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      dataType="text"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Viajes"
+              name="Viajes"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              description="Origen de archivo plano"
+              localeId="2058"
+              usesDispositions="true"
+              version="1"
+              contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="RetainNulls"
+                  dataType="System.Boolean"
+                  description="Especifica si las columnas de longitud cero se tratan como NULL.">false</property>
+                <property
+                  name="FileNameColumnName"
+                  dataType="System.String"
+                  description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Integracion viajes y viajeros\Viajes.Connections[FlatFileConnection]"
+                  name="FlatFileConnection"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones de archivos planos 2]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones de archivos planos 2]" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano]"
+                  name="Salida de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].ExternalColumns[curp]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[idViaje]"
+                      name="idViaje"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[idViaje]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].ExternalColumns[idViaje]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[lugar]"
+                      name="lugar"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[lugar]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].ExternalColumns[lugar]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      name="fecha"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].ExternalColumns[fecha]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].ExternalColumns[curp]"
+                      name="curp"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].ExternalColumns[idViaje]"
+                      name="idViaje"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].ExternalColumns[lugar]"
+                      name="lugar"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano].ExternalColumns[fecha]"
+                      name="fecha"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de error de origen de archivo plano]"
+                  name="Salida de error de origen de archivo plano"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      name="Columna de salida de error de origen de archivo plano"
+                      description="Columna de salida de error de origen de archivo plano"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      dataType="text"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Integracion viajes y viajeros\Viajes2"
+              name="Viajes2"
+              componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+              description="Origen de archivo plano"
+              localeId="2058"
+              usesDispositions="true"
+              version="1"
+              contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1">
+              <properties>
+                <property
+                  name="RetainNulls"
+                  dataType="System.Boolean"
+                  description="Especifica si las columnas de longitud cero se tratan como NULL.">false</property>
+                <property
+                  name="FileNameColumnName"
+                  dataType="System.String"
+                  description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Integracion viajes y viajeros\Viajes2.Connections[FlatFileConnection]"
+                  name="FlatFileConnection"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones de archivos planos 3]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones de archivos planos 3]" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano]"
+                  name="Salida de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      name="curp"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[curp]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].ExternalColumns[curp]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[idViaje]"
+                      name="idViaje"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[idViaje]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].ExternalColumns[idViaje]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[destino]"
+                      name="destino"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[destino]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].ExternalColumns[destino]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      name="fecha"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].Columns[fecha]"
+                      length="50"
+                      dataType="str"
+                      codePage="1252"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].ExternalColumns[fecha]">
+                      <properties>
+                        <property
+                          name="FastParse"
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional.">false</property>
+                        <property
+                          name="UseBinaryFormat"
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario.">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].ExternalColumns[curp]"
+                      name="curp"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].ExternalColumns[idViaje]"
+                      name="idViaje"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].ExternalColumns[destino]"
+                      name="destino"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano].ExternalColumns[fecha]"
+                      name="fecha"
+                      dataType="str"
+                      length="50"
+                      codePage="1252" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de error de origen de archivo plano]"
+                  name="Salida de error de origen de archivo plano"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      name="Columna de salida de error de origen de archivo plano"
+                      description="Columna de salida de error de origen de archivo plano"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      dataType="text"
+                      codePage="1252" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de combinación de mezcla]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Integracion viajes y viajeros\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+              endId="Package\Integracion viajes y viajeros\Destino de SQL Server.Inputs[Entrada de destino de SQL Server]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de Mezclar 11]"
+              name="Salida de Mezclar 1"
+              startId="Package\Integracion viajes y viajeros\Mezclar 1.Outputs[Salida de Mezclar 1]"
+              endId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de Mezclar 1]"
+              name="Salida de Mezclar 1"
+              startId="Package\Integracion viajes y viajeros\Mezclar.Outputs[Salida de Mezclar 1]"
+              endId="Package\Integracion viajes y viajeros\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de ordenación2]"
+              name="Salida de ordenación"
+              startId="Package\Integracion viajes y viajeros\Ordenar 3.Outputs[Salida de ordenación]"
+              endId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 1]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de ordenación3]"
+              name="Salida de ordenación"
+              startId="Package\Integracion viajes y viajeros\Ordenar 2.Outputs[Salida de ordenación]"
+              endId="Package\Integracion viajes y viajeros\Mezclar 1.Inputs[Entrada de Mezclar 2]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de ordenación]"
+              name="Salida de ordenación"
+              startId="Package\Integracion viajes y viajeros\Ordenar 1.Outputs[Salida de ordenación]"
+              endId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 2]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de ordenación1]"
+              name="Salida de ordenación"
+              startId="Package\Integracion viajes y viajeros\Ordenar.Outputs[Salida de ordenación]"
+              endId="Package\Integracion viajes y viajeros\Mezclar.Inputs[Entrada de Mezclar 1]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de origen de archivo plano2]"
+              name="Salida de origen de archivo plano"
+              startId="Package\Integracion viajes y viajeros\Viajero.Outputs[Salida de origen de archivo plano]"
+              endId="Package\Integracion viajes y viajeros\Ordenar.Inputs[Entrada de ordenación]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de origen de archivo plano3]"
+              name="Salida de origen de archivo plano"
+              startId="Package\Integracion viajes y viajeros\Viajes2.Outputs[Salida de origen de archivo plano]"
+              endId="Package\Integracion viajes y viajeros\Ordenar 3.Inputs[Entrada de ordenación]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de origen de archivo plano]"
+              name="Salida de origen de archivo plano"
+              startId="Package\Integracion viajes y viajeros\Viajes.Outputs[Salida de origen de archivo plano]"
+              endId="Package\Integracion viajes y viajeros\Ordenar 2.Inputs[Entrada de ordenación]" />
+            <path
+              refId="Package\Integracion viajes y viajeros.Paths[Salida de origen de archivo plano1]"
+              name="Salida de origen de archivo plano"
+              startId="Package\Integracion viajes y viajeros\Viajeros.Outputs[Salida de origen de archivo plano]"
+              endId="Package\Integracion viajes y viajeros\Ordenar 1.Inputs[Entrada de ordenación]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql11">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Integracion viajes y viajeros"
+          TopLeft="5.5,13.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Integracion viajes y viajeros">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Integracion viajes y viajeros\Viajero"
+          TopLeft="3.5,21.5" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Integracion viajes y viajeros\Viajeros"
+          TopLeft="137.5,23.5" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\Integracion viajes y viajeros\Viajes"
+          TopLeft="291.5,23.5" />
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Integracion viajes y viajeros\Viajes2"
+          TopLeft="429.5,23.5" />
+        <NodeLayout
+          Size="115,42"
+          Id="Package\Integracion viajes y viajeros\Mezclar"
+          TopLeft="67.5,199.5" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\Integracion viajes y viajeros\Ordenar"
+          TopLeft="7.5,103.5" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Integracion viajes y viajeros\Ordenar 1"
+          TopLeft="139.5,103.5" />
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de origen de archivo plano1]"
+          TopLeft="201,65.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Integracion viajes y viajeros\Ordenar 2"
+          TopLeft="281.5,103.5" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Integracion viajes y viajeros\Ordenar 3"
+          TopLeft="421.5,103.5" />
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de origen de archivo plano]"
+          TopLeft="345.25,65.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de origen de archivo plano3]"
+          TopLeft="485.75,65.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="125,42"
+          Id="Package\Integracion viajes y viajeros\Mezclar 1"
+          TopLeft="351.5,201.5" />
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de ordenación2]"
+          TopLeft="485,145.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-71,56"
+              Start="0,0"
+              End="-71,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="-4,28" />
+                  <mssgle:LineSegment
+                    End="-67,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-67,28"
+                    Point2="-71,28"
+                    Point3="-71,32" />
+                  <mssgle:LineSegment
+                    End="-71,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de ordenación3]"
+          TopLeft="345,145.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.5,56"
+              Start="0,0"
+              End="49.5,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.175355450237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.175355450237"
+                    Point2="0,33.175355450237"
+                    Point3="4,33.175355450237" />
+                  <mssgle:LineSegment
+                    End="45.5,33.175355450237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45.5,33.175355450237"
+                    Point2="49.5,33.175355450237"
+                    Point3="49.5,37.175355450237" />
+                  <mssgle:LineSegment
+                    End="49.5,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de ordenación]"
+          TopLeft="203,145.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-60.1666666666667,54"
+              Start="0,0"
+              End="-60.1666666666667,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.9554030874786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.9554030874786"
+                    Point2="0,31.9554030874786"
+                    Point3="-4,31.9554030874786" />
+                  <mssgle:LineSegment
+                    End="-56.1666666666667,31.9554030874786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-56.1666666666667,31.9554030874786"
+                    Point2="-60.1666666666667,31.9554030874786"
+                    Point3="-60.1666666666667,35.9554030874786" />
+                  <mssgle:LineSegment
+                    End="-60.1666666666667,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de origen de archivo plano2]"
+          TopLeft="63.25,63.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de ordenación1]"
+          TopLeft="66.5,145.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.6666666666667,54"
+              Start="0,0"
+              End="40.6666666666667,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.9554030874786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.9554030874786"
+                    Point2="0,31.9554030874786"
+                    Point3="4,31.9554030874786" />
+                  <mssgle:LineSegment
+                    End="36.6666666666667,31.9554030874786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.6666666666667,31.9554030874786"
+                    Point2="40.6666666666667,31.9554030874786"
+                    Point3="40.6666666666667,35.9554030874786" />
+                  <mssgle:LineSegment
+                    End="40.6666666666667,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Integracion viajes y viajeros\Destino de SQL Server"
+          TopLeft="185.5,384.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Integracion viajes y viajeros\Combinación de mezcla"
+          TopLeft="169.5,302.227272727273" />
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de Mezclar 1]"
+          TopLeft="125,241.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140,60.7272727272725"
+              Start="0,0"
+              End="140,53.2272727272725">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.3636363636363" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.3636363636363"
+                    Point2="0,30.3636363636363"
+                    Point3="4,30.3636363636363" />
+                  <mssgle:LineSegment
+                    End="136,30.3636363636363" />
+                  <mssgle:CubicBezierSegment
+                    Point1="136,30.3636363636363"
+                    Point2="140,30.3636363636363"
+                    Point3="140,34.3636363636363" />
+                  <mssgle:LineSegment
+                    End="140,53.2272727272725" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de Mezclar 11]"
+          TopLeft="414,243.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-118.5,58.7272727272725"
+              Start="0,0"
+              End="-118.5,51.2272727272725">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.9436420277541" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.9436420277541"
+                    Point2="0,34.9436420277541"
+                    Point3="-4,34.9436420277541" />
+                  <mssgle:LineSegment
+                    End="-114.5,34.9436420277541" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114.5,34.9436420277541"
+                    Point2="-118.5,34.9436420277541"
+                    Point3="-118.5,38.9436420277541" />
+                  <mssgle:LineSegment
+                    End="-118.5,51.2272727272725" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Integracion viajes y viajeros.Paths[Salida de combinación de mezcla]"
+          TopLeft="265,344.227272727273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.5,40.2727272727275"
+              Start="0,0"
+              End="13.5,32.7727272727275">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.1363636363637" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.1363636363637"
+                    Point2="0,20.1363636363637"
+                    Point3="4,20.1363636363637" />
+                  <mssgle:LineSegment
+                    End="9.5,20.1363636363637" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.5,20.1363636363637"
+                    Point2="13.5,20.1363636363637"
+                    Point3="13.5,24.1363636363637" />
+                  <mssgle:LineSegment
+                    End="13.5,32.7727272727275" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Integracion viajes y viajeros\Destino de SQL Server">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
