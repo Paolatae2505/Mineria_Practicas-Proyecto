@@ -1,0 +1,89 @@
+SELECT
+    {
+        [Measures].[Sales Amount],
+        [Measures].[Order Quantity]
+    } ON 0,
+    {
+        [Ship Date].[Calendar Year].&[2011],
+        [Ship Date].[Calendar Year].&[2012]
+    } ON 1
+FROM [Adventure Works DW2012]
+WHERE [Dim Geography].[English Country Region Name].&[United Kingdom];
+
+SELECT {[Measures].[Sales Amount]} ON 0, 
+{
+Crossjoin (
+    [Dim Customer].[Gender].MEMBERS,
+    [Dim Customer].[Marital Status].MEMBERS)
+} ON 1
+FROM
+[Adventure Works DW2012];
+
+SELECT [Measures].[Order Quantity] ON 0,
+       FILTER ([Dim Customer - Sales Territory].[Sales Territory Country].MEMBERS,
+	           [Dim Product Category].[English Product Category Name].&[Bikes]) ON 1
+FROM [Adventure Works DW2012]
+WHERE [Ship Date].[Calendar Year].&[2013];
+
+SELECT [Measures].[Order Quantity] ON 0,
+	TOPCOUNT ([Dim Product].[English Product Name].MEMBERS, 6,
+	          [Measures].[Order Quantity]) ON 1
+FROM [Adventure Works DW2012];
+
+SELECT [Measures].[Order Quantity] ON 0,
+    BOTTOMCOUNT(
+        FILTER(
+		    FILTER(
+				[Dim Product].[English Product Name].Members,
+				[Measures].[Order Quantity] > 0),
+            NOT IsEmpty([Measures].[Order Quantity])
+        ),
+        5,
+        [Measures].[Order Quantity]
+    ) ON 1
+FROM [Adventure Works DW2012];
+  
+SELECT
+  [Measures].[Sales Amount] ON COLUMNS,
+  FILTER(
+    CROSSJOIN(
+      [Dim Geography].[English Country Region Name].MEMBERS,
+      [Dim Product].[English Product Name].MEMBERS
+    ),
+    [Measures].[Order Quantity] > 100
+  ) ON ROWS
+FROM [Adventure Works DW2012];
+
+SELECT [Measures].[Sales Amount] ON COLUMNS,
+UNION(
+  TOPCOUNT(
+    [Dim Geography].[English Country Region Name].MEMBERS, 50,
+    ([Measures].[Sales Amount], [Order Date].[English Month Name].&[November])
+  ),
+  TOPCOUNT(
+    [Dim Geography].[English Country Region Name].MEMBERS, 50,
+    ([Measures].[Sales Amount], [Order Date].[English Month Name].&[December])
+  )
+) ON ROWS
+FROM [Adventure Works DW2012]
+WHERE {
+  [Ship Date].[Calendar Year].&[2012]
+};
+
+SELECT   
+{[Measures].[Sales Amount], [Measures].[Total Product Cost] }  
+ON COLUMNS ,  
+{ [Order Date].[Calendar Year].MEMBERS}  
+ON ROWS  
+FROM [Adventure Works DW2012];
+
+SELECT   
+{[Measures].[Sales Amount], [Measures].[Total Product Cost] }  
+ON 0 ,  
+{ [Order Date].[Calendar Year].&[2010], [Order Date].[Calendar Year].&[2011]}  
+ON 1  
+FROM [Adventure Works DW2012]  
+WHERE [Dim Geography].[Postal Code].&[02062];
+
+
+
