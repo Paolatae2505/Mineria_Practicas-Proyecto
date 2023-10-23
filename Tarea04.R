@@ -9,3 +9,14 @@ ggplot(star_data, aes(x = Spectral.Class)) +
   geom_bar() +
   labs(title = "Distribución de Spectral Class") 
 
+# Histogramas
+# install.packages("DataExplorer")
+library(DataExplorer)
+plot_histogram(star_data)
+
+# Boxplots
+tem <- boxplot(star_data$Temperature..K., main="Temperature (K)")
+lum <- boxplot(star_data$Luminosity.L.Lo., main="Luminosity.L.Lo.")
+rad <- boxplot(star_data$Radius.R.Ro., main="Radius.R.Ro.")
+ab <- boxplot(star_data$Absolute.magnitude.Mv., main="Absolute.magnitude.Mv.")
+read <- boxplot(star_data$Star.type, main="Star.type")
