@@ -4,6 +4,14 @@ library(ggplot2)
 
 star_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/Tareas/6 class csv.csv")
 
+#a. Variables categóricas
+star_data <- star_data %>% mutate_if(is.character, as.factor)
+star_data$Star.type <- as.factor(star_data$Star.type)
+head(star_data)
+
+#b. Resúmen
+summary(star_data)
+
 #d. Gráfica de barras de la variable Spectral class
 ggplot(star_data, aes(x = Spectral.Class)) +
   geom_bar() +
