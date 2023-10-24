@@ -1,8 +1,8 @@
-library(tidyverse)
+require(tidyverse)
 
 library(ggplot2)
 
-star_data <- read.csv("./6 class csv.csv")
+star_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/Practicas/PGIt/Mineria_Practicas-Proyecto/6 class csv.csv")
 
 #a. Variables categóricas
 star_data <- star_data %>% mutate_if(is.character, as.factor)
@@ -13,8 +13,7 @@ head(star_data)
 summary(star_data)
 
 # c.Histogramas
-# install.packages("DataExplorer")
-library(DataExplorer)
+require(DataExplorer)
 plot_histogram(star_data)
 
 # Boxplots
@@ -29,13 +28,10 @@ ggplot(star_data, aes(x = Spectral.Class)) +
   geom_bar() +
   labs(title = "Distribución de Spectral Class") 
   
-# Diagrama de dispersión
-library(GGally)
-vars_num <- star_data[, 1:ncol(datos)-2]
-ggpairs(vars_num, lower = list(continuous = "smooth"),
-        diag = list(continuous = "barDiag"), axisLabels = "none")
+# e.Diagrama de dispersión
+pairs(star_data[, c("Temperature..K.", "Luminosity.L.Lo.", "Radius.R.Ro.", "Absolute.magnitude.Mv.","Star.type")])
+names(star_data)
 
-# Gráfica de correlación
-library(corrplot)
-correlacion <- cor(vars_num)
-corrplot(correlacion, method = "color")
+#f.Gráfica de correlación
+correlation_matrix <- cor(star_data[, c("Temperature..K.", "Luminosity.L.Lo.", "Radius.R.Ro.", "Absolute.magnitude.Mv.", "Star.type")])
+corrplot(correlation_matrix, method = "color")
