@@ -2,7 +2,7 @@ library(tidyverse)
 
 library(ggplot2)
 
-star_data <- read.csv("../6 class csv.csv")
+star_data <- read.csv("./6 class csv.csv")
 
 #a. Variables categóricas
 star_data <- star_data %>% mutate_if(is.character, as.factor)
