@@ -28,3 +28,14 @@ read <- boxplot(star_data$Star.type, main="Star.type")
 ggplot(star_data, aes(x = Spectral.Class)) +
   geom_bar() +
   labs(title = "Distribución de Spectral Class") 
+  
+# Diagrama de dispersión
+library(GGally)
+vars_num <- star_data[, 1:ncol(datos)-2]
+ggpairs(vars_num, lower = list(continuous = "smooth"),
+        diag = list(continuous = "barDiag"), axisLabels = "none")
+
+# Gráfica de correlación
+library(corrplot)
+correlacion <- cor(vars_num)
+corrplot(correlacion, method = "color")
