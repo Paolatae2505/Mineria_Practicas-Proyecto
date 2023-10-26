@@ -1,0 +1,15 @@
+
+SELECT {[Measures].[Sales Amount], [Measures].[Tax Amt]} ON 0,
+        FILTER(
+		    FILTER(
+				{[Dim Product].[English Product Name].allmembers * 
+				[Ship Date].[English Month Name].allmembers * 
+				[Dim Sales Territory].[Sales Territory Country].allmembers },
+				[Measures].[Sales Amount] > 0),
+            NOT IsEmpty([Measures].[Sales Amount])
+        ) ON 1
+FROM [Adventure Works DW2012]
+WHERE [Ship Date].[Calendar Year].&[2012];
+
+
+

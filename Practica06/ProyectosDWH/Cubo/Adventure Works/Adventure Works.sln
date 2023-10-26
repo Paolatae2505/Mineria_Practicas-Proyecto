@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "Adventure Works", "Adventure Works\Adventure Works.dwproj", "{F0C4F730-4643-4832-9858-5E7CC8A5F974}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0C4F730-4643-4832-9858-5E7CC8A5F974}.Development|Default.ActiveCfg = Development
+		{F0C4F730-4643-4832-9858-5E7CC8A5F974}.Development|Default.Build.0 = Development
+		{F0C4F730-4643-4832-9858-5E7CC8A5F974}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
