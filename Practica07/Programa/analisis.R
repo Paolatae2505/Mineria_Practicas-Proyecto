@@ -9,6 +9,11 @@ corrplot(correlation_matrix, method = "color")
 
 plot_correlation(sales, maxcat = 5L)
 
+# Correlación entre los atributos (sin datos faltantes)
+sales_limpio <- na.omit(sales[, c("Year", "NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales")])
+correlation_matrix <- cor(sales_limpio)
+corrplot(correlation_matrix, method = "color")
+
 # Datos atipicos.
 box_Year <- boxplot(sales$Year, main="Year")
 box_NA_Sales <- boxplot(sales$NA_Sales, main="NA_Sales")
