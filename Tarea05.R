@@ -38,8 +38,12 @@ min.max <- function(x) {
 }
 # aplicamos la función
 normalizados <- as.data.frame(lapply(olympic$tab,min.max))
-normalizados
+head(normalizados)
 
-# creamos el diagrama de dispersión en forma de matriz, con regresión lineal
+# creamos el diagrama de dispersión en forma de matriz
+# para los datos sin normalizar
+ggpairs(olympic$tab, lower = list(continuous = "smooth"),
+        diag = list(continuous = "barDiag"), axisLabels = "none")
+# para los datos normalizados
 ggpairs(normalizados, lower = list(continuous = "smooth"),
         diag = list(continuous = "barDiag"), axisLabels = "none")
