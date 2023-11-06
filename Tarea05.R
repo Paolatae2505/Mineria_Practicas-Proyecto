@@ -33,14 +33,13 @@ subconjunto_info <- cutoff.k(pesos,5)
 subconjunto_info
 
 #noramlización min-max
-#fución para normalizar
 min.max <- function(x) {
-  return (((x - min(x)) / (max(x) - min(x))*(2))-1)
+  return ((x - min(x)) / (max(x) - min(x)))
 }
-#Aplicamos la función
+# aplicamos la función
 normalizados <- as.data.frame(lapply(olympic$tab,min.max))
 normalizados
 
-#Creamos el diagrama de dispersión en forma de matriz, con regresión lineal
+# creamos el diagrama de dispersión en forma de matriz, con regresión lineal
 ggpairs(normalizados, lower = list(continuous = "smooth"),
         diag = list(continuous = "barDiag"), axisLabels = "none")
