@@ -9,6 +9,29 @@ library(MASS)
 sales <- read.csv('/content/drive/MyDrive/Escuela/Almacenes/vgsales.csv')
 head(sales)
 
+# Vemos que sustituciones deberán ser realizadas para los campos no numerios
+unique(sales$Platform)
+unique(sales$Genre)
+unique(sales$Publisher)
+
+#Sustituimos errores de dedo
+sales[sales=="intendo"]<-"Nintendo"
+sales[sales=="nintndo"]<-"Nintendo"
+sales[sales=="ation"]<-"Action"
+sales[sales=="ACTON"]<-"Action"
+sales[sales=="WI"]<-"WII"
+sales[sales=="wII"]<-"WII"
+sales[sales=="wi"]<-"WII"
+sales[sales=="Wi"]<-"WII"
+sales[sales=="wii"]<-"WII"
+sales[sales=="Wii"]<-"WII"
+sales[sales=="PStation2"]<-"PS2"
+sales[sales=="PlayStation2"]<-"PS2"
+sales[sales=="PlayS2"]<-"PS2"
+sales[sales=="xbox360"]<-"XBOX360"
+sales[sales=="X360"]<-"XBOX360"
+sales[sales==""]<-"NA"
+
 # manejamos solo a los valores numericos
 sales_numeric<- data.frame(sales$Year, sales$NA_Sales, sales$EU_Sales, sales$JP_Sales, sales$Other_Sales, sales$Global_Sales)
 
@@ -26,15 +49,12 @@ ventas_norm <- as.data.frame(sales.normalizados)
 head(ventas_norm)
 
 # volvemos a juntar los datos numericos con los que no lo son
-sales_limpio <- data.frame(salesp$Rank, salesp$Name, salesp$Platform,
-                               ventas_norm$sales.Year, salesp$Genre,salesp$Publisher,
+sales_limpio <- data.frame(sales$Rank, sales$Name, sales$Platform,
+                               ventas_norm$sales.Year, sales$Genre,sales$Publisher,
                                ventas_norm$sales.NA_Sales, ventas_norm$sales.EU_Sales,
                                ventas_norm$sales.JP_Sales, ventas_norm$sales.Other_Sales,
                                ventas_norm$sales.Global_Sales)
 names(sales_limpio) <- colnames(sales)#c('ID', 'items', 'store', 'price')
-
-#Sustituimos errores de dedo
-sales_limpio[sales_limpio=="intendo"]<-"Nintendo"
 
 # visualizamos primeros valores de dataset limpio
 head(sales_limpio)
