@@ -25,6 +25,8 @@ box_A_edad <- boxplot(grupoA$Edad, main="Grupo A: Edad")
 box_B__edad <- boxplot(grupoB$Edad, main="Grupo B: Edad")
 
 # 4. ¿Cuál grupo tiene un promedio de altura mayor? Y ¿Cuál tiene una altura mediana menor?
+grupoA <- na.omit(grupoA)
+grupoB <- na.omit(grupoB)
 meanA = mean(grupoA$Estatura)
 meanB = mean(grupoB$Estatura)
 mayor = max(meanA, meanB)
@@ -34,7 +36,7 @@ print(paste("Promedio de altura mayor: ",mayor))
 
 medianA = median(grupoA$Estatura)
 medianB = median(grupoB$Estatura)
-menor = min(meanA, meanB)
+menor = min(medianA, medianB)
 print(paste("Mediana de altura grupo A: ", medianA))
 print(paste("Mediana de altura grupo B: ",medianB))
 print(paste("Mediana de altura menor: ", menor))
