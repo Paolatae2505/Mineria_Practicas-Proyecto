@@ -25,6 +25,16 @@ Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
 
 sapply(gtd_data, function(x) is.factor(x))
 
+#obtener variables numericas
+cols_numeric <- colnames(gtd_data[,sapply(gtd_data,is.numeric)])
+numeric_gtd_data <- gtd_data[cols_numeric]
+
+#obtener sus histrogramas
+j <-0
+for(i in numeric_gtd_data) {
+      hist((i), main = paste("Histograma de " , cols_numeric[j]), xlab = cols_numeric[j])
+      j <-j+1
+}
 
 
 resumen_categoricas <- summary(gtd_data)
