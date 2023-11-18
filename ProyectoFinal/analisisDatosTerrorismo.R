@@ -114,3 +114,47 @@ niveles <- sapply(gtd_data[columnas_factores], function(x) paste(levels(x), coll
 
 Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
 Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
+
+
+
+# ------------- Creación de tabla (matriz) ----------------
+num_filas <- length(names(gtd_data))
+num_columnas <- 11
+info_atributos <- matrix(nrow = num_filas, ncol = num_columnas)
+                    
+colnames(info_atributos) <- c("Nombre", "Tipo", "ValoresPermitidos", "ValPerdidos", "Min", "Max", "Mean", "DevEstandar", "TipoDist", "NivelesYFrecuencia", "Atipicos")
+nombres_gtd_data = names(gtd_data)
+
+for (i in 1:num_filas) {
+    atributo = gtd_data[[nombres_gtd_data[i]]]
+    # Col 1: Nombre del atributo
+    info_atributos[i, 1] = nombres_gtd_data[i]
+    # Col 2: Tipo de atributo (nominal, ordinal, numérico, etc.).
+    info_atributos[i, 2] = class(atributo)
+    # Col 3: Valores permitidos (si aplica)
+
+    # Col 4: Porcentaje de valores perdidos.
+    info_atributos[i, 4] = mean(is.na(atributo)) * 100
+
+    # Para estadísticas:
+    numeric <- is.numeric(atributo)
+    # Col 5: Valor mínimo (si aplica)
+    if (numeric) {
+        info_atributos[i, 5] = min(atributo, na.rm = TRUE)
+    # Col 6: máximo (si aplica)
+        info_atributos[i, 6] = max(atributo, na.rm = TRUE)
+    # Col 7: media (si aplica)
+        info_atributos[i, 7] = mean(atributo, na.rm = TRUE)
+    # Col 8: desviación estándar (si aplica).
+        info_atributos[i, 8] = sd(atributo, na.rm = TRUE)
+    }
+    # Col 9: Si es numérico, indicar el tipo de distribución que parece seguir (p.e. normal).
+
+    # Col 10: Si es categórico, los niveles y frecuencia de cada uno.
+
+    # Col 11: Indicar si el atributo presenta valores atípicos.
+}
+
+
+# Mostrar resultado
+print(info_atributos)
