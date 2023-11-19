@@ -11,6 +11,33 @@ summary(gtd_data)
 # Información sobre el conjunto de datos
 str(gtd_data)
 
+# Vector donde almacenaremos la distribución de las variable categoricas o NA
+# Vara las que no aplique
+distribucion <- vector( length=length(names(gtd_data)))
+cols_names <- colnames(gtd_data)
+j <- 1
+for(i in gtd_data) {
+  if (class(i) == "numeric"){
+    # Para saber en que posición guardar la distribución que observemos
+    print(j)
+    # Gráficamos histogramas de variables categoricas para aproximar distribución
+    hist((i), main = paste("Histograma de " , cols_names[j]), xlab = cols_names[j])
+  }else{
+      distribucion[j] = "NA"
+  }
+  j <-j+1
+}
+distribucion[1] = "beta"
+distribucion[14] = "normal"
+distribucion[15] = "beta"
+distribucion[71] = "lognormal"
+distribucion[102] = "lognormal"
+distribucion[108] = "lognormal"
+distribucion[113] = "lognormal"
+distribucion[118] = "lognormal"
+distribucion[119] = "lognormal"
+distribucion[120] = "lognormal"
+                                
 # Crear una tabla con información detallada para cada atributo
 columnas_categoricas <- sapply(gtd_data, function(x) is.factor(x) | is.character(x))
 
@@ -28,14 +55,6 @@ sapply(gtd_data, function(x) is.factor(x))
 #obtener variables numericas
 cols_numeric <- colnames(gtd_data[,sapply(gtd_data,is.numeric)])
 numeric_gtd_data <- gtd_data[cols_numeric]
-
-#obtener sus histrogramas
-j <-0
-for(i in numeric_gtd_data) {
-      hist((i), main = paste("Histograma de " , cols_numeric[j]), xlab = cols_numeric[j])
-      j <-j+1
-}
-
 
 resumen_categoricas <- summary(gtd_data)
 
@@ -149,7 +168,7 @@ for (i in 1:num_filas) {
         info_atributos[i, 8] = sd(atributo, na.rm = TRUE)
     }
     # Col 9: Si es numérico, indicar el tipo de distribución que parece seguir (p.e. normal).
-
+    info_atributos[i, 9] =  distribucion[i]
     # Col 10: Si es categórico, los niveles y frecuencia de cada uno.
 
     # Col 11: Indicar si el atributo presenta valores atípicos.
