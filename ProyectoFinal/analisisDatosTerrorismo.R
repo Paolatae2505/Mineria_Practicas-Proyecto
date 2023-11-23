@@ -38,50 +38,20 @@ distribucion[118] = "lognormal"
 distribucion[119] = "lognormal"
 distribucion[120] = "lognormal"
                                 
-# Crear una tabla con información detallada para cada atributo
-columnas_categoricas <- sapply(gtd_data, function(x) is.factor(x) | is.character(x))
-
-# Convertir columnas categóricas a factores
-gtd_data[, columnas_categoricas] <- lapply(gtd_data[, columnas_categoricas], as.factor)
-
 # Calcular métricas
 Valores_Perdidos = sapply(gtd_data, function(x) sum(is.na(x)) / length(x) * 100)
-Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
-Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
+#Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
+#Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
 
-
+#Verificar cuales atributos son factores
 sapply(gtd_data, function(x) is.factor(x))
 
 #obtener variables numericas
 cols_numeric <- colnames(gtd_data[,sapply(gtd_data,is.numeric)])
 numeric_gtd_data <- gtd_data[cols_numeric]
-
+#Ver las variables categoricas
 resumen_categoricas <- summary(gtd_data)
 
-# Filtrar solo las variables categóricas
-categoricas <- resumen_categoricas[unlist(lapply(resumen_categoricas, class)) %in% c("character", "factor")]
-
-# Obtener niveles y frecuencia para cada variable categórica
-resultados <- lapply(categoricas, function(var) {
-  niveles <- ifelse(is.factor(var), paste(levels(var), collapse = ", "), NA)
-  frecuencia <- ifelse(is.factor(var), table(var), NA)
-  return(data.frame(Niveles = niveles, Frecuencia = frecuencia))
-})
-
-# Combina los resultados en un solo marco de datos
-resultados_df <- do.call(rbind, resultados)
-
-# Agrega el nombre de la variable como una columna
-resultados_df$Variable <- rownames(resultados_df)
-
-resultados_df
-
-Valores_Perdidos
-Niveles
-Frecuencia
-
-Valores_Perdidos_2 = colMeans(is.na(gtd_data)) * 100
-Valores_Perdidos_2
 
 # Identificar las variables categóricas
 variables_categoricas <- sapply(gtd_data, function(columna) is.factor(columna) | is.character(columna))
@@ -91,16 +61,13 @@ nombres_categoricos <- names(variables_categoricas[variables_categoricas])
 print(nombres_categoricos)
 nombres_categoricos
 
-
+#Clase de las variables
 sapply(gtd_data, class)
-
-
+# Verificamos cuales columnas son factores
 factores <- sapply(gtd_data, is.factor)
 columnas_factores <- names(factores[factores])
-
-
-# Supongamos que 'gtd_data' es tu conjunto de datos
-
+#---------------------------------------------------------------------
+ #Programa para obtener Factores de las Categoricas 
 # Obtener las columnas de caracteres
 columnas_caracter <- sapply(gtd_data, is.character)
 
@@ -124,24 +91,15 @@ for (col in names(gtd_data[columnas_caracter])) {
 # Mostrar las columnas identificadas como factores
 print(columnas_factores)
 
-
+#_---------------------------------------------------------
 gtd_data[columnas_factores] <- lapply(gtd_data[columnas_factores], as.factor)
-
-# Obtener la frecuencia y niveles de los factores
-frecuencia <- sapply(gtd_data[columnas_factores], function(x) table(x))
-niveles <- sapply(gtd_data[columnas_factores], function(x) paste(levels(x), collapse = ", "))
-
-Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
-Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
-
-
 
 # ------------- Creación de tabla (matriz) ----------------
 num_filas <- length(names(gtd_data))
-num_columnas <- 11
+num_columnas <- 12
 info_atributos <- matrix(nrow = num_filas, ncol = num_columnas)
                     
-colnames(info_atributos) <- c("Nombre", "Tipo", "ValoresPermitidos", "ValPerdidos", "Min", "Max", "Mean", "DevEstandar", "TipoDist", "NivelesYFrecuencia", "Atipicos")
+colnames(info_atributos) <- c("Nombre", "Tipo", "ValoresPermitidos", "ValPerdidos", "Min", "Max", "Mean", "DevEstandar", "TipoDist", "Niveles","Frecuencia" ,"Atipicos")
 nombres_gtd_data = names(gtd_data)
 
 for (i in 1:num_filas) {
@@ -153,7 +111,8 @@ for (i in 1:num_filas) {
     # Col 3: Valores permitidos (si aplica)
 
     # Col 4: Porcentaje de valores perdidos.
-    info_atributos[i, 4] = mean(is.na(atributo)) * 100
+    Valores_Perdidos = sum(is.na(atributo)) / length(atributo) * 100
+    info_atributos[i, 4] = Valores_Perdidos
 
     # Para estadísticas:
     numeric <- is.numeric(atributo)
@@ -168,10 +127,16 @@ for (i in 1:num_filas) {
         info_atributos[i, 8] = sd(atributo, na.rm = TRUE)
     }
     # Col 9: Si es numérico, indicar el tipo de distribución que parece seguir (p.e. normal).
-    info_atributos[i, 9] =  distribucion[i]
-    # Col 10: Si es categórico, los niveles y frecuencia de cada uno.
-
-    # Col 11: Indicar si el atributo presenta valores atípicos.
+    #info_atributos[i, 9] =  distribucion[i]
+    # Col 10 y 11: Si es categórico, los niveles y frecuencia de cada uno.
+    if (is.factor(atributo)) {
+      info_atributos[i, 10] = paste(levels(atributo), collapse = ", ")
+      info_atributos[i, 11] = paste(table(atributo), collapse = ", ")
+    } else {
+      info_atributos[i, 10] = NA
+      info_atributos[i, 11] = NA
+    }
+    
 }
 
 
