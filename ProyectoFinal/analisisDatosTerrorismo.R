@@ -195,3 +195,19 @@ for (i in 1:num_filas) {
 
 # Mostrar resultado
 print(info_atributos)
+ #-----------------------------------------------------------------------------------------
+                                #CORRELACIÓN (Preguntas)
+#------------------------------------------------------------------------------------------
+
+# Extraer solo las columnas numéricas
+datos_numericos <- gtd_data[, sapply(gtd_data, is.numeric)]
+
+# Extraer la variable objetivo
+variable_objetivo <- gtd_data$variable_objetivo
+
+correlaciones <- cor(datos_numericos, gtd_data$variable_objetivo)
+
+# Tabla resumen de correlaciones
+resumen_correlaciones <- as.table(correlaciones)
+
+
