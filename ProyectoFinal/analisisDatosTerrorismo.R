@@ -91,6 +91,56 @@ for (col in names(gtd_data[columnas_caracter])) {
 # Mostrar las columnas identificadas como factores
 print(columnas_factores)
 
+allowed_values <-  vector( length=length(names(gtd_data)))
+
+j <- 1
+for(i in gtd_data) {
+    # Obtenemos sus valores únicos
+    unique_values <- unique(i)
+    # Omitimos valores nulos
+    unique_values <- na.omit(unique_values)
+
+    # Verificamos que no sean más de 50 valores diferentes para considerarlos
+    # valores permitidos
+    if (length(unique_values) < 50) {
+        if (is.numeric(i)){
+            allowed_values[j] = paste(min(unique_values), "-", max(unique_values))
+        } else {
+            allowed_values[j] = paste(unique_values, collapse = ", ")
+        }
+    } else {
+        allowed_values[j] = "NA"
+    }
+    j <- j+1
+}
+
+# Mostrar los valores permitidos para cada columna
+print(allowed_values)
+
+cols_names <- colnames(gtd_data)
+
+# Vector donde almacenaremos si una variable cuenta con valores atípicos
+atypical <- vector( length=length(names(gtd_data)))
+
+j <-1
+for(i in gtd_data) {
+  if(class(i) == "numeric") {
+      # Graficamos el bloxpot de las variables numéricas y lo guardamos
+      box <- boxplot(i, main = paste("Boxplot de " , cols_names[j]), xlab = cols_names[j], plot = FALSE)
+      # Obtenemos los valores que identifica como atípicos
+      valores_atipicos <- box$out
+
+      atypical[j] <- ifelse(length(valores_atipicos) > 0, "yes", "no")
+
+  } else {
+      atypical[j] <- "no"
+  }
+
+  j <-j+1
+}
+print(atypical)
+
+
 #_---------------------------------------------------------
 gtd_data[columnas_factores] <- lapply(gtd_data[columnas_factores], as.factor)
 
@@ -109,7 +159,7 @@ for (i in 1:num_filas) {
     # Col 2: Tipo de atributo (nominal, ordinal, numérico, etc.).
     info_atributos[i, 2] = class(atributo)
     # Col 3: Valores permitidos (si aplica)
-
+    info_atributos[i, 3] = allowed_values[i]
     # Col 4: Porcentaje de valores perdidos.
     Valores_Perdidos = sum(is.na(atributo)) / length(atributo) * 100
     info_atributos[i, 4] = Valores_Perdidos
@@ -136,6 +186,8 @@ for (i in 1:num_filas) {
       info_atributos[i, 10] = NA
       info_atributos[i, 11] = NA
     }
+    # Col 12: Indicar si el atributo presenta valores atípicos.
+    info_atributos[i, 12] = atypical[i]
     
 }
 
