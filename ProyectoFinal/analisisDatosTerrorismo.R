@@ -139,7 +139,8 @@ for(i in gtd_data) {
   j <-j+1
 }
 print(atypical)
-
+Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
+Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
 
 #_---------------------------------------------------------
 gtd_data[columnas_factores] <- lapply(gtd_data[columnas_factores], as.factor)
@@ -180,8 +181,8 @@ for (i in 1:num_filas) {
     #info_atributos[i, 9] =  distribucion[i]
     # Col 10 y 11: Si es categórico, los niveles y frecuencia de cada uno.
     if (is.factor(atributo)) {
-      info_atributos[i, 10] = paste(levels(atributo), collapse = ", ")
-      info_atributos[i, 11] = paste(table(atributo), collapse = ", ")
+      info_atributos[i, 10] = Niveles[i]
+      info_atributos[i, 11] = Frecuencia[i]
     } else {
       info_atributos[i, 10] = NA
       info_atributos[i, 11] = NA
