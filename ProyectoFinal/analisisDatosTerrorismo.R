@@ -178,7 +178,7 @@ for (i in 1:num_filas) {
         info_atributos[i, 8] = sd(atributo, na.rm = TRUE)
     }
     # Col 9: Si es numérico, indicar el tipo de distribución que parece seguir (p.e. normal).
-    #info_atributos[i, 9] =  distribucion[i]
+    info_atributos[i, 9] =  distribucion[i]
     # Col 10 y 11: Si es categórico, los niveles y frecuencia de cada uno.
     if (is.factor(atributo)) {
       info_atributos[i, 10] = Niveles[i]
