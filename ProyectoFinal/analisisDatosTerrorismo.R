@@ -199,6 +199,22 @@ print(info_atributos)
                                 #CORRELACIÓN (Preguntas)
 #------------------------------------------------------------------------------------------
 
+#convertir factor y char a numeric
+cols_names <- colnames(gtd_data)
+j <- 1
+set.seed(1)
+for(i in gtd_data_numeric) {
+  n = nlevels(i)
+  if(class(i) == 'character'){
+      x <- as.factor(i)
+      gtd_data_numeric[cols_names[j]]<- as.numeric(x)
+  }
+  if(class(i) == 'factor'){
+    gtd_data_numeric[cols_names[j]]<- as.numeric(i) #as.factor(sample(i, n, replace=TRUE))
+  }
+  j <-j+1
+}
+                    
 # Extraer solo las columnas numéricas
 datos_numericos <- gtd_data[, sapply(gtd_data, is.numeric)]
 
