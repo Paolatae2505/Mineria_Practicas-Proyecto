@@ -1,4 +1,5 @@
 require(tidyverse)
+library(corrplot)
 
 gtd_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/ProyectoFinal/globalterrorismdb_0718dist.csv")
 
@@ -203,27 +204,33 @@ print(info_atributos)
 cols_names <- colnames(gtd_data)
 j <- 1
 set.seed(1)
-for(i in gtd_data_numeric) {
+for(i in gtd_data) {
   n = nlevels(i)
   if(class(i) == 'character'){
       x <- as.factor(i)
-      gtd_data_numeric[cols_names[j]]<- as.numeric(x)
+      gtd_data[cols_names[j]]<- as.numeric(x)
   }
   if(class(i) == 'factor'){
-    gtd_data_numeric[cols_names[j]]<- as.numeric(i) #as.factor(sample(i, n, replace=TRUE))
+    gtd_data[cols_names[j]]<- as.numeric(i) #as.factor(sample(i, n, replace=TRUE))
   }
   j <-j+1
 }
                     
-# Extraer solo las columnas numéricas
-datos_numericos <- gtd_data[, sapply(gtd_data, is.numeric)]
-
-# Extraer la variable objetivo
-variable_objetivo <- gtd_data$variable_objetivo
-
-correlaciones <- cor(datos_numericos, gtd_data$variable_objetivo)
-
-# Tabla resumen de correlaciones
-resumen_correlaciones <- as.table(correlaciones)
+correlation_matrix <- cor(gtd_data)
 
 
+print(correlation_matrix)
+#Variables objetivo
+subset_data <- gtd_data[c("success", "city", "attacktype1","attacktype2","attacktype3")]
+correlation_matrix_subset <- cor(subset_data)
+print(correlation_matrix_subset)
+
+
+
+umbral <- 0.7  
+
+# Encontrar pares de variables con correlación superior al umbral
+correlation_pairs <- which(abs(correlation_matrix) > umbral & correlation_matrix != 1, arr.ind = TRUE)
+
+# Filtrar las variables únicas de los pares encontrados
+variables_con_correlacion_fuerte <- unique(c(row.names(correlation_pairs), colnames(correlation_pairs)))

@@ -1,7 +1,7 @@
 # Carga de datos
 gtd_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/ProyectoFinal/globalterrorismdb_0718dist.csv")
 
-# Muestreo del 10% de tus datos
+# Muestreo del 10%
 porcentaje_muestreo <- 0.1
 tamano_muestra <- round(nrow(gtd_data) * porcentaje_muestreo)
 
