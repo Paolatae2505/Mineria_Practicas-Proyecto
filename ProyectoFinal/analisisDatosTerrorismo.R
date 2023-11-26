@@ -234,3 +234,36 @@ correlation_pairs <- which(abs(correlation_matrix) > umbral & correlation_matrix
 
 # Filtrar las variables únicas de los pares encontrados
 variables_con_correlacion_fuerte <- unique(c(row.names(correlation_pairs), colnames(correlation_pairs)))
+
+
+
+# Variables más relacionadas con success
+cor_success <- correlation_matrix["success", ]
+
+# Variables más relacionadas con city
+cor_city <- correlation_matrix["city", ]
+
+# Variables más relacionadas con attacktype1
+cor_attacktype1 <- correlation_matrix["attacktype1", ]
+
+# Variables más relacionadas con attacktype2
+cor_attacktype2 <- correlation_matrix["attacktype2", ]
+
+# Variables más relacionadas con attacktype3
+cor_attacktype3 <- correlation_matrix["attacktype3", ]
+
+# Imprimir los resultados
+print("Correlaciones con success:")
+print(cor_success)
+
+print("Correlaciones con city:")
+print(cor_city)
+
+print("Correlaciones con attacktype1:")
+print(cor_attacktype1)
+
+print("Correlaciones con attacktype2:")
+print(cor_attacktype2)
+
+print("Correlaciones con attacktype3:")
+print(cor_attacktype3)
