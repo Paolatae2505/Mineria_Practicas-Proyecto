@@ -37,3 +37,42 @@ for (columna in colnames(muestra)[columnas_numericas]) {
 
 # Muestra el resumen después de la eliminación de valores atípicos
 summary(muestra)
+
+#---- TRATAMIENTO DE VALORES PERDIDOS -----
+# remplazando por media / moda / mediana
+gtd_data_m<-data.frame(muestra)
+for (var in 1:ncol(gtd_data_m)) {
+    if (class(gtd_data_m[,var])=="numeric") {
+        gtd_data_m[is.na(gtd_data_m[,var]),var] <- mean(gtd_data_m[,var], na.rm = TRUE)
+    } else if (class(gtd_data_m[,var]) %in% c("character", "factor")) {
+        gtd_data_m[is.na(gtd_data_m[,var]),var] <- mode(gtd_data_m[,var])
+    } else if (class(gtd_data_m[,var]) == "integer"){
+        gtd_data_m[is.na(gtd_data_m[,var]),var] <- median(gtd_data_m[,var], na.rm = TRUE)
+    }
+}
+summary(gtd_data_m)
+
+# reemplazando usando aprendizaje automatico
+install.packages("missForest")
+library(missForest)
+
+# convertir a numeric los character y factor
+gtd_data_numeric<-data.frame(muestra)
+cols_names <- colnames(gtd_data)
+j <- 1
+set.seed(1)
+for(i in gtd_data_numeric) {
+  n = nlevels(i)
+  if(class(i) == 'character'){
+      x <- as.factor(i)
+      gtd_data_numeric[cols_names[j]]<- as.numeric(x)
+  }
+  if(class(i) == 'factor'){
+    gtd_data_numeric[cols_names[j]]<- as.numeric(i) #as.factor(sample(i, n, replace=TRUE))
+  }
+  j <-j+1
+}
+
+# Imputar los valores perdidos, usando los parámetros con valores default
+gtd_data_numeric_imp <- missForest(gtd_data_numeric)
+summary(gtd_data_numeric_imp)
