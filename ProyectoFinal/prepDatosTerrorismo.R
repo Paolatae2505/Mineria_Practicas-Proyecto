@@ -1,5 +1,5 @@
 # Carga de datos
-gtd_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/ProyectoFinal/globalterrorismdb_0718dist.csv")
+gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
 
 # Muestreo del 10%
 porcentaje_muestreo <- 0.1
@@ -76,3 +76,31 @@ for(i in gtd_data_numeric) {
 # Imputar los valores perdidos, usando los parámetros con valores default
 gtd_data_numeric_imp <- missForest(gtd_data_numeric)
 summary(gtd_data_numeric_imp)
+
+
+
+
+#---- DISCRETIZACIÓN -----
+library(dplyr)library(ggplot2) 
+
+# Función para discretizar por rango
+discretizar_por_rango <- function(data, num_bins = 10) { #PENDIENTE: VER NUM DE BINS A DIVIDIR
+  # Identificar columnas numéricas
+  columnas_numericas <- sapply(data, is.numeric)
+
+  # Discretizar cada columna numérica
+  for (columna in names(data)[columnas_numericas]) {
+    # Verificar el rango de la columna antes de discretizar
+    cat("Rango de", columna, ":", range(data[[columna]]), "\n")
+    
+    # Discretizar usando cut_interval y agregar "_disc" al nombre
+    data[[paste0(columna, "_disc")]] <- cut_interval(data[[columna]], n = num_bins, dig.lab = 9)
+  }
+
+  # Devolver el conjunto de datos con las nuevas columnas discretizadas
+  return(data)
+}
+
+datos_discretizados <- discretizar_por_rango(data.frame(muestra))
+head(datos_discretizados)
+summary(datos_discretizados)
