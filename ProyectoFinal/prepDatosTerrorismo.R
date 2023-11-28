@@ -14,6 +14,26 @@ muestra <- gtd_data[sample(nrow(gtd_data), tamano_muestra), ]
 # Muestra el resumen de la muestra
 summary(muestra)
 
+#---- SELECCION DE ATRIBUTOS -----
+
+library(mlbench)
+
+# Cargar biblioteca especializada en selección de características:
+library(FSelector)
+
+# Utilizando el enfoque de filtros para reducir dimensiones, calcular los pesos
+pesos <- chi.squared(success~.,data=muestra)
+# pesos <- chi.squared(success~.,data=gtd_data)
+
+pesos #Visualizar
+
+#Graficar los pesos en el orden de importancia
+orden <- order(pesos$attr_importance)
+dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Importancia")
+subconjunto <- cutoff.k(pesos,20)
+
+
+#---- ELIMINACIÓN DE VALORES ATÍPICOS -----
 # Eliminación de valores atípicos en cada columna numérica
 columnas_numericas <- sapply(muestra, is.numeric)
 
@@ -37,6 +57,7 @@ for (columna in colnames(muestra)[columnas_numericas]) {
 
 # Muestra el resumen después de la eliminación de valores atípicos
 summary(muestra)
+
 
 #---- TRATAMIENTO DE VALORES PERDIDOS -----
 # remplazando por media / moda / mediana
@@ -81,23 +102,21 @@ summary(gtd_data_numeric_imp)
 
 
 #---- DISCRETIZACIÓN -----
-library(dplyr)library(ggplot2) 
+library(dplyr)
+library(ggplot2) 
 
-# Función para discretizar por rango
+# Discretizar por rango
 discretizar_por_rango <- function(data, num_bins = 10) { #PENDIENTE: VER NUM DE BINS A DIVIDIR
   # Identificar columnas numéricas
   columnas_numericas <- sapply(data, is.numeric)
 
-  # Discretizar cada columna numérica
   for (columna in names(data)[columnas_numericas]) {
     # Verificar el rango de la columna antes de discretizar
     cat("Rango de", columna, ":", range(data[[columna]]), "\n")
     
-    # Discretizar usando cut_interval y agregar "_disc" al nombre
     data[[paste0(columna, "_disc")]] <- cut_interval(data[[columna]], n = num_bins, dig.lab = 9)
   }
 
-  # Devolver el conjunto de datos con las nuevas columnas discretizadas
   return(data)
 }
 
