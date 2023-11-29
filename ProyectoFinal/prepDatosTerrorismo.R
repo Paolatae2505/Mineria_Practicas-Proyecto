@@ -33,31 +33,6 @@ dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Import
 subconjunto <- cutoff.k(pesos,20)
 
 
-#---- ELIMINACIÓN DE VALORES ATÍPICOS -----
-# Eliminación de valores atípicos en cada columna numérica
-columnas_numericas <- sapply(muestra, is.numeric)
-
-for (columna in colnames(muestra)[columnas_numericas]) {
-  # Calcular el primer y tercer cuartil
-  Q1 <- quantile(muestra[, columna], 0.25)
-  Q3 <- quantile(muestra[, columna], 0.75)
-  
-  # Calcular el rango intercuartíl (IQR)
-  IQR_valor <- Q3 - Q1
-  
-  # Definir el umbral basado en el IQR
-  umbral_atipico <- 1.5 * IQR_valor
-  
-  # Identificar índices de valores atípicos
-  indices_atipicos <- which(muestra[, columna] < (Q1 - umbral_atipico) | muestra[, columna] > (Q3 + umbral_atipico))
-  
-  # Filtrar el conjunto de datos para quitar los valores atípicos
-  muestra <- muestra[-indices_atipicos, ]
-}
-
-# Muestra el resumen después de la eliminación de valores atípicos
-summary(muestra)
-
 
 #---- TRATAMIENTO DE VALORES PERDIDOS -----
 # remplazando por media / moda / mediana
@@ -99,7 +74,43 @@ gtd_data_numeric_imp <- missForest(gtd_data_numeric)
 summary(gtd_data_numeric_imp)
 
 
+#---- ELIMINACIÓN DE VALORES ATÍPICOS -----
+# Crear una función para eliminar valores atípicos
+eliminar_atipicos <- function(datos, umbral = 1.5) {
+  # Identificar columnas numéricas
+  columnas_numericas <- sapply(datos, is.numeric)
+  
+  # Inicializar el conjunto de datos resultante
+  datos_limpios <- datos
+  
+  # Iterar sobre las columnas numéricas
+  for (columna in colnames(datos)[columnas_numericas]) {
+    # Calcular el primer y tercer cuartil
+    Q1 <- quantile(datos[, columna], 0.25)
+    Q3 <- quantile(datos[, columna], 0.75)
+    
+    # Calcular el rango intercuartílico (IQR)
+    IQR_valor <- Q3 - Q1
+    
+    # Definir el umbral basado en el IQR
+    umbral_atipico <- umbral * IQR_valor
+    
+    # Identificar índices de valores atípicos
+    indices_atipicos <- which(datos[, columna] < (Q1 - umbral_atipico) | datos[, columna] > (Q3 + umbral_atipico))
+    
+    # Filtrar el conjunto de datos para quitar los valores atípicos
+    datos_limpios <- datos_limpios[-indices_atipicos, ]
+  }
+  
+  return(datos_limpios)
+}
 
+# Ejemplo de uso
+muestra <- eliminar_atipicos(muestra)
+
+
+# Muestra el resumen después de la eliminación de valores atípicos
+summary(muestra)
 
 #---- DISCRETIZACIÓN -----
 library(dplyr)
