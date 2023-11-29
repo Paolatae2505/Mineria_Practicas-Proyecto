@@ -17,16 +17,13 @@ summary(muestra)
 #---- SELECCION DE ATRIBUTOS -----
 library(dplyr)
 library(mlbench)
-
-# Cargar biblioteca especializada en selección de características:
 library(FSelector)
 
 # Utilizando el enfoque de filtros para reducir dimensiones, calcular los pesos
 pesos <- chi.squared(success~.,data=muestra)
-# pesos <- chi.squared(success~.,data=gtd_data)
-pesos #Visualizar
+pesos
 
-#Graficar los pesos en el orden de importancia
+# Pesos en orden de importancia
 orden <- order(pesos$attr_importance)
 dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Importancia")
 subconjunto <- cutoff.k(pesos,69)
@@ -35,6 +32,9 @@ subconjunto <- cutoff.k(pesos,69)
 muestra_seleccion <- muestra[, subconjunto]
 # Paso eventid al principio:
 muestra_seleccion <- muestra_seleccion %>% select(eventid, everything())
+# Añado el atributo success al final
+success <- (muestra$success)
+muestra_seleccion <- cbind(muestra_seleccion, success)
 summary(muestra_seleccion)
 str(muestra_seleccion)
 
