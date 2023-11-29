@@ -15,7 +15,7 @@ muestra <- gtd_data[sample(nrow(gtd_data), tamano_muestra), ]
 summary(muestra)
 
 #---- SELECCION DE ATRIBUTOS -----
-
+library(dplyr)
 library(mlbench)
 
 # Cargar biblioteca especializada en selección de características:
@@ -24,14 +24,19 @@ library(FSelector)
 # Utilizando el enfoque de filtros para reducir dimensiones, calcular los pesos
 pesos <- chi.squared(success~.,data=muestra)
 # pesos <- chi.squared(success~.,data=gtd_data)
-
 pesos #Visualizar
 
 #Graficar los pesos en el orden de importancia
 orden <- order(pesos$attr_importance)
 dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Importancia")
-subconjunto <- cutoff.k(pesos,20)
+subconjunto <- cutoff.k(pesos,69)
 
+# Crea muestra con las variables que nos sirven
+muestra_seleccion <- muestra[, subconjunto]
+# Paso eventid al principio:
+muestra_seleccion <- muestra_seleccion %>% select(eventid, everything())
+summary(muestra_seleccion)
+str(muestra_seleccion)
 
 
 #---- TRATAMIENTO DE VALORES PERDIDOS -----
@@ -134,3 +139,4 @@ discretizar_por_rango <- function(data, num_bins = 10) { #PENDIENTE: VER NUM DE 
 datos_discretizados <- discretizar_por_rango(data.frame(muestra))
 head(datos_discretizados)
 summary(datos_discretizados)
+
