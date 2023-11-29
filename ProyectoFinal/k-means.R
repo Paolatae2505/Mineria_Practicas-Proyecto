@@ -1,6 +1,5 @@
 # --- A CAMBIAR UNA VEZ QUE SE TENGA EL csv DE LOS PREPROCESADOS ---
-gtd_data <- read.csv("/content/drive/MyDrive/Escuela/Almacenes/globalterrorismdb_0718dist.csv")
-
+gtd_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/ProyectoFinal/globalterrorismdb_0718dist.csv")
 
 # NA's
 gtd_data_m<-data.frame(gtd_data)
