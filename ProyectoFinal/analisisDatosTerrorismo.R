@@ -1,7 +1,7 @@
 require(tidyverse)
 library(corrplot)
 
-gtd_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/ProyectoFinal/globalterrorismdb_0718dist.csv")
+gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
 
 # Visualizar las primeras filas del conjunto de datos
 head(gtd_data)
@@ -103,7 +103,7 @@ for(i in gtd_data) {
 
     # Verificamos que no sean más de 50 valores diferentes para considerarlos
     # valores permitidos
-    if (length(unique_values) < 50) {
+    if (length(unique_values) < 100) {
         if (is.numeric(i)){
             allowed_values[j] = paste(min(unique_values), "-", max(unique_values))
         } else {
@@ -193,9 +193,13 @@ for (i in 1:num_filas) {
     
 }
 
-
 # Mostrar resultado
 print(info_atributos)
+                    
+info_df <- as.data.frame(info_atributos)
+
+# Guardar como CSV
+write.csv(info_df, file = "informacion_atributos.csv", row.names = TRUE)
  #-----------------------------------------------------------------------------------------
                                 #CORRELACIÓN (Preguntas)
 #------------------------------------------------------------------------------------------
@@ -215,7 +219,7 @@ for(i in gtd_data) {
   }
   j <-j+1
 }
-                    
+str(gtd_data)                    
 correlation_matrix <- cor(gtd_data)
 
 
