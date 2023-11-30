@@ -12,6 +12,9 @@ summary(gtd_data)
 # Información sobre el conjunto de datos
 str(gtd_data)
 
+#-------------------------------------------------------------------
+# Función para indicar el tipo de distribución que parecer seguir 
+
 # Vector donde almacenaremos la distribución de las variable categoricas o NA
 # Vara las que no aplique
 distribucion <- vector( length=length(names(gtd_data)))
@@ -67,8 +70,10 @@ sapply(gtd_data, class)
 # Verificamos cuales columnas son factores
 factores <- sapply(gtd_data, is.factor)
 columnas_factores <- names(factores[factores])
+                                
 #---------------------------------------------------------------------
- #Programa para obtener Factores de las Categoricas 
+#Programa para obtener Factores de las Categoricas 
+                                
 # Obtener las columnas de caracteres
 columnas_caracter <- sapply(gtd_data, is.character)
 
@@ -115,6 +120,7 @@ for(i in gtd_data) {
     j <- j+1
 }
 
+#---------------------------------------------------------------------
 # Mostrar los valores permitidos para cada columna
 print(allowed_values)
 
@@ -143,7 +149,7 @@ print(atypical)
 Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
 Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
 
-#_---------------------------------------------------------
+#---------------------------------------------------------
 gtd_data[columnas_factores] <- lapply(gtd_data[columnas_factores], as.factor)
 
 # ------------- Creación de tabla (matriz) ----------------
@@ -156,13 +162,18 @@ nombres_gtd_data = names(gtd_data)
 
 for (i in 1:num_filas) {
     atributo = gtd_data[[nombres_gtd_data[i]]]
+    
     # Col 1: Nombre del atributo
     info_atributos[i, 1] = nombres_gtd_data[i]
+    
     # Col 2: Tipo de atributo (nominal, ordinal, numérico, etc.).
     info_atributos[i, 2] = class(atributo)
+    
     # Col 3: Valores permitidos (si aplica)
+    
     info_atributos[i, 3] = allowed_values[i]
     # Col 4: Porcentaje de valores perdidos.
+    
     Valores_Perdidos = sum(is.na(atributo)) / length(atributo) * 100
     info_atributos[i, 4] = Valores_Perdidos
 
@@ -172,14 +183,19 @@ for (i in 1:num_filas) {
     if (numeric) {
         info_atributos[i, 5] = min(atributo, na.rm = TRUE)
     # Col 6: máximo (si aplica)
+        
         info_atributos[i, 6] = max(atributo, na.rm = TRUE)
     # Col 7: media (si aplica)
+        
         info_atributos[i, 7] = mean(atributo, na.rm = TRUE)
+        
     # Col 8: desviación estándar (si aplica).
         info_atributos[i, 8] = sd(atributo, na.rm = TRUE)
     }
+    
     # Col 9: Si es numérico, indicar el tipo de distribución que parece seguir (p.e. normal).
     info_atributos[i, 9] =  distribucion[i]
+    
     # Col 10 y 11: Si es categórico, los niveles y frecuencia de cada uno.
     if (is.factor(atributo)) {
       info_atributos[i, 10] = Niveles[i]
@@ -188,16 +204,15 @@ for (i in 1:num_filas) {
       info_atributos[i, 10] = NA
       info_atributos[i, 11] = NA
     }
+    
     # Col 12: Indicar si el atributo presenta valores atípicos.
     info_atributos[i, 12] = atypical[i]
-    
 }
 
 # Mostrar resultado
 print(info_atributos)
                     
 info_df <- as.data.frame(info_atributos)
-
 # Guardar como CSV
 write.csv(info_df, file = "informacion_atributos.csv", row.names = TRUE)
  #-----------------------------------------------------------------------------------------
@@ -238,8 +253,6 @@ correlation_pairs <- which(abs(correlation_matrix) > umbral & correlation_matrix
 
 # Filtrar las variables únicas de los pares encontrados
 variables_con_correlacion_fuerte <- unique(c(row.names(correlation_pairs), colnames(correlation_pairs)))
-
-
 
 # Variables más relacionadas con success
 cor_success <- correlation_matrix["success", ]
