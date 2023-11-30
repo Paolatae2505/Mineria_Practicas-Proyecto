@@ -101,9 +101,9 @@ for(i in gtd_data) {
     # Omitimos valores nulos
     unique_values <- na.omit(unique_values)
 
-    # Verificamos que no sean más de 50 valores diferentes para considerarlos
+    # Verificamos que no sean más de 500 valores diferentes para considerarlos
     # valores permitidos
-    if (length(unique_values) < 100) {
+    if (length(unique_values) < 500) {
         if (is.numeric(i)){
             allowed_values[j] = paste(min(unique_values), "-", max(unique_values))
         } else {

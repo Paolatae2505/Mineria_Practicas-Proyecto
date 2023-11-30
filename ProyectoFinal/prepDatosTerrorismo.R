@@ -1,6 +1,13 @@
 # Carga de datos
 gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
 
+# Indices de columas con valores -9 y 9
+with_nines = c(17, 23, 29, 31, 72, 75, 81, 105, 110, 117, 131, 132, 133, 134)
+# Sustitución de -9 y 9 con NA
+for (i in with_nines) {
+  gtd_data[, i][gtd_data[, i] == 9 | gtd_data[, i] == -9] <- NA
+}
+
 eliminar_columnas_valores_perdidos <- function(datos, umbral = 90) {
     # Calcula el porcentaje de valores perdidos por columna
     porcentaje_perdido <- colMeans(is.na(datos)) * 100
