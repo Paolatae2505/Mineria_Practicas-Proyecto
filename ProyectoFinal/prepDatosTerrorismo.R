@@ -20,23 +20,15 @@ library(mlbench)
 library(FSelector)
 
 # Utilizando el enfoque de filtros para reducir dimensiones, calcular los pesos
-pesos <- chi.squared(success~.,data=muestra)
+muestra_sin_eventid <- muestra[, names(muestra) != "eventid"]
+pesos <- chi.squared(success~.,data=muestra_sin_eventid)
 pesos
 
 # Pesos en orden de importancia
 orden <- order(pesos$attr_importance)
 dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Importancia")
-subconjunto <- cutoff.k(pesos,69)
-
-# Crea muestra con las variables que nos sirven
-muestra_seleccion <- muestra[, subconjunto]
-# Paso eventid al principio:
-muestra_seleccion <- muestra_seleccion %>% select(eventid, everything())
-# Añado el atributo success al final
-success <- (muestra$success)
-muestra_seleccion <- cbind(muestra_seleccion, success)
-summary(muestra_seleccion)
-str(muestra_seleccion)
+subconjunto <- cutoff.k(pesos,50)
+subconjunto
 
 
 #---- TRATAMIENTO DE VALORES PERDIDOS -----
