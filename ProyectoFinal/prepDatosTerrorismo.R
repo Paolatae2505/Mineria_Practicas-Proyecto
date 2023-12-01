@@ -1,27 +1,29 @@
 # Carga de datos
 gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
-# Crear un data frame de ejemplo
-data <- data.frame(Attacktype = c(1, 2, NA),
-                   Attacktype_txt = c("Paola", "Bry", "Bry"))
 
 # Crear una función para asociar las filas únicas y llenar valores faltantes
 crear_asociacion_unica_y_llenar <- function(gtd_data, variable1, variable2) {
   # Inicializar un diccionario vacío
   asociacion_unica <- list()
+  index1 <- which(names(gtd_data) == variable1)
+  index2 <- which(names(gtd_data) == variable2)
   
   # Iterar sobre las filas del data frame
   for (i in 1:nrow(gtd_data)) {
     # Verificar si la asociación ya existe en el diccionario
-    if (!is.na(gtd_data[[variable1]][i]) && !is.null(gtd_data[[variable2]][i]) &&
-        !gtd_data[[variable1]][i] %in% names(asociacion_unica)) {
-      # Agregar la asociación al diccionario
-      asociacion_unica[[as.character(data[[variable1]][i])]] <- data[[variable2]][i]
+    #print(gtd_data[i, index1])
+    if (!is.na(gtd_data[i, index1]) && !is.null(gtd_data[i,index2]) &&
+        !gtd_data[i,index1] %in% names(asociacion_unica)) {
+        # Agregar la asociación al diccionario
+        asociacion_unica[[as.character(gtd_data[i, index1])]] <- gtd_data[i, index2]
     }
-    
-    # Llenar valores faltantes en variable1 usando la asociación
-    if (is.na(gtd_data[[variable1]][i]) && !is.na(gtd_data[[variable2]][i])) {
-      num_asociado <- names(asociacion_unica)[asociacion_unica == gtd_data[[variable2]][i]]
-      gtd_data[[variable1]][i] <- as.numeric(num_asociado)
+  }
+
+  for (i in 1:nrow(gtd_data)) {
+    #Llenar valores faltantes en variable1 usando la asociación
+    if (is.na(gtd_data[i, index1]) && !is.na(gtd_data[i, index2])) {
+      num_asociado <- names(asociacion_unica)[asociacion_unica == gtd_data[i, index2]]
+      gtd_data[i, index1] <- as.numeric(num_asociado)
     }
   }
   
@@ -29,11 +31,10 @@ crear_asociacion_unica_y_llenar <- function(gtd_data, variable1, variable2) {
   return(gtd_data)
 }
 
-gtd_data["alternative_txt"]
-
 # Ejemplo de uso
-data_con_asociaciones_y_llenado <- crear_asociacion_unica_y_llenar(data, "alternative", "alternative_txt")
-print(data_con_asociaciones_y_llenado)
+data_con_asociaciones_y_llenado <- crear_asociacion_unica_y_llenar(gtd_data, "attacktype1", "attacktype1_txt")
+summary(data_con_asociaciones_y_llenado)
+
 # Indices de columas con valores -9 y 9
 with_nines = c(17, 23, 29, 31, 72, 75, 81, 105, 110, 117, 131, 132, 133, 134)
 # Sustitución de -9 y 9 con NA
