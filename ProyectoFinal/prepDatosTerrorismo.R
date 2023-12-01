@@ -1,5 +1,20 @@
 # Carga de datos
 gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
+str(gtd_data)
+
+#borrar <- c("alternative_txt")
+#gtd_data <- gtd_data[ , !(names(gtd_data) %in% borrar)]
+
+# ------------- LIMPIEZA PREVIA A LA SELECCIÓN -------------
+# -------- Quitamos versión de texto de los datos ----------
+
+columnas_txt <- grep("_txt$", names(gtd_data), value = TRUE)
+print(columnas_txt)
+
+quitar_terminacion_txt <- function(columna_txt) {
+  col_sin_txt <- sub("_txt$", "", columna_txt)
+  return(col_sin_txt)
+}
 
 # Crear una función para asociar las filas únicas y llenar valores faltantes
 crear_asociacion_unica_y_llenar <- function(gtd_data, variable1, variable2) {
@@ -26,21 +41,29 @@ crear_asociacion_unica_y_llenar <- function(gtd_data, variable1, variable2) {
       gtd_data[i, index1] <- as.numeric(num_asociado)
     }
   }
-  
-  # Devolver el data frame con las asociaciones únicas y valores llenos
   return(gtd_data)
 }
 
-# Ejemplo de uso
-data_con_asociaciones_y_llenado <- crear_asociacion_unica_y_llenar(gtd_data, "attacktype1", "attacktype1_txt")
-summary(data_con_asociaciones_y_llenado)
 
-# Indices de columas con valores -9 y 9
-with_nines = c(17, 23, 29, 31, 72, 75, 81, 105, 110, 117, 131, 132, 133, 134)
-# Sustitución de -9 y 9 con NA
-for (i in with_nines) {
-  gtd_data[, i][gtd_data[, i] == 9 | gtd_data[, i] == -9] <- NA
+# Recorrer las columnas que terminan en "_txt"
+for (columna in columnas_txt) {
+    col_sin_txt <- quitar_terminacion_txt(columna)
+    print(col_sin_txt)
+    print(columna)
+    gtd_data <- crear_asociacion_unica_y_llenar(gtd_data, col_sin_txt, columna)
 }
+
+str(gtd_data)
+
+# Eliminar columnas con terminación en _txt
+for (columna in columnas_txt) {
+  gtd_data <- gtd_data[, -which(names(gtd_data) == columna), drop = FALSE]
+}
+
+summary(gtd_data)
+ncol(gtd_data)
+
+# ---- Eliminación de columnas con más del 90% de val perdidos: -----
 
 eliminar_columnas_valores_perdidos <- function(datos, umbral = 90) {
     # Calcula el porcentaje de valores perdidos por columna
@@ -59,11 +82,6 @@ eliminar_columnas_valores_perdidos <- function(datos, umbral = 90) {
 gtd_data_limpiado <- eliminar_columnas_valores_perdidos(gtd_data, 90)
 summary(gtd_data_limpiado)
 ncol(gtd_data_limpiado)
-
-# Suponiendo que tus datos están en un objeto llamado 'datos'
-columnas_txt <- grep("_txt$", names(gtd_data_limpiado), value = TRUE)
-# Mostrar los nombres de las columnas encontradas
-print(columnas_txt)
 
 # Muestreo del 10%
 porcentaje_muestreo <- 0.1
