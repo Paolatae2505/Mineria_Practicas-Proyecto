@@ -18,11 +18,16 @@ quitar_terminacion_txt <- function(columna_txt) {
 
 # Crear una función para asociar las filas únicas y llenar valores faltantes
 crear_asociacion_unica_y_llenar <- function(gtd_data, variable1, variable2) {
+    
   # Inicializar un diccionario vacío
-  asociacion_unica <- list()
-  index1 <- which(names(gtd_data) == variable1)
-  index2 <- which(names(gtd_data) == variable2)
-  
+    asociacion_unica <- list()
+    index1 <- which(names(gtd_data) == variable1)
+    index2 <- which(names(gtd_data) == variable2)
+
+    gtd_data[, variable2] <- as.character(gtd_data[, variable2])
+    gtd_data[, variable2][gtd_data[, variable2] == ""] <- NA
+    gtd_data[, variable2][gtd_data[, variable2] == " "] <- NA
+    
   # Iterar sobre las filas del data frame
   for (i in 1:nrow(gtd_data)) {
     # Verificar si la asociación ya existe en el diccionario
