@@ -200,17 +200,17 @@ discretizar_por_rango <- function(data, num_bins = 10) { # Usar sturges para la 
   return(data)
 }
 
-datos_discretizados <- discretizar_por_rango(data.frame(muestra))
-head(datos_discretizados)
-summary(datos_discretizados)
+# quitarle las columnas eventid y success al data set muestra
+muestra_m2 <- muestra_m[, !(colnames(muestra_m) %in% c('eventid', 'success'))]
 
+# discretizar con la funcion discretizar_por_rango 
+muestra_discretizada <- discretizar_por_rango(muestra_m2)
 
-
-# Juntar todo ----------------------
-head(muestra)
-muestra_seleccion <- selecciona_atributos(muestra)
-summary(muestra_seleccion)
-muestra_m <- imputacion(muestra_seleccion)
-head(muestra_m)
-muestra_sin_atipicos <- eliminar_atipicos(muestra_m)
-head(muestra_sin_atipicos) # no sirve
+# Añadir 'eventid' como primera columna y 'success' como última
+# muestra_sin_atipicos <- eliminar_atipicos(na.omit(muestra))
+eventid <- (muestra$eventid)
+muestra_discretizada2 <- cbind(eventid, muestra_discretizada)
+success <- (muestra$success)
+muestra_discretizada3 <- cbind(muestra_discretizada2, success)
+head(muestra_discretizada3)
+summary(muestra_discretizada3)
