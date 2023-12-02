@@ -131,12 +131,19 @@ selecciona_atributos <- function(data){
 #---- TRATAMIENTO DE VALORES PERDIDOS -----
 
 # remplazando por media / moda / mediana
+mode2 <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
 imputacion <- function(data){
     for (var in 1:ncol(data)) {
         if (class(data[,var])=="numeric") {
             data[is.na(data[,var]),var] <- mean(data[,var], na.rm = TRUE)
         } else if (class(data[,var]) %in% c("character", "factor")) {
-            data[is.na(data[,var]),var] <- mode(data[,var])
+            no_empty <- na.omit(data[,var][data[,var] != ""])
+            m <- mode2(no_empty)
+            data[data[,var]== "",var] <- m
+            data[is.na(data[,var]),var] <- m
         } else if (class(data[,var]) == "integer"){
             data[is.na(data[,var]),var] <- median(data[,var], na.rm = TRUE)
         }
