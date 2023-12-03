@@ -142,8 +142,8 @@ imputacion <- function(data){
         } else if (class(data[,var]) %in% c("character", "factor")) {
             no_empty <- na.omit(data[,var][data[,var] != ""])
             m <- mode2(no_empty)
-            data[data[,var]== "",var] <- m
             data[is.na(data[,var]),var] <- m
+            data[data[,var]== "",var] <- m
         } else if (class(data[,var]) == "integer"){
             data[is.na(data[,var]),var] <- median(data[,var], na.rm = TRUE)
         }
