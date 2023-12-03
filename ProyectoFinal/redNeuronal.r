@@ -1,21 +1,28 @@
 gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
 
+mode2 <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+imputacion <- function(data){
+    for (var in 1:ncol(data)) {
+        if (class(data[,var])=="numeric") {
+            data[is.na(data[,var]),var] <- mean(data[,var], na.rm = TRUE)
+        } else if (class(data[,var]) %in% c("character", "factor")) {
+            no_empty <- na.omit(data[,var][data[,var] != ""])
+            m <- mode2(no_empty)
+            data[is.na(data[,var]),var] <- m
+            data[data[,var]== "",var] <- m
+        } else if (class(data[,var]) == "integer"){
+            data[is.na(data[,var]),var] <- median(data[,var], na.rm = TRUE)
+        }
+    }
+    return(data)
+}
+gtd_data <-imputacion(gtd_data)
 gtd_data$success <- as.factor(gtd_data$success)
 summary(gtd_data)
 str(gtd_data)
-
-gtd_data_m<-data.frame(gtd_data)
-for (var in 1:ncol(gtd_data_m)) {
-    if (class(gtd_data_m[,var])=="numeric") {
-        gtd_data_m[is.na(gtd_data_m[,var]),var] <- mean(gtd_data_m[,var], na.rm = TRUE)
-    } else if (class(gtd_data_m[,var]) %in% c("character", "factor")) {
-        gtd_data_m[is.na(gtd_data_m[,var]),var] <- mode(gtd_data_m[,var])
-    } else if (class(gtd_data_m[,var]) == "integer"){
-        gtd_data_m[is.na(gtd_data_m[,var]),var] <- median(gtd_data_m[,var], na.rm = TRUE)
-    }
-}
-summary(gtd_data_m)
-gtd_data<-data.frame(gtd_data_m)
 
 
 convertir_a_num <- function(data){
@@ -36,7 +43,7 @@ convertir_a_num <- function(data){
     return(data)
 }
 
-gtd_data_num <- convertir_a_num(muestra)
+gtd_data <- convertir_a_num(muestra)
 head(gtd_data_num)
 
 # ------- Creamos conjuntos de entrenamiento y prueba ---------
