@@ -244,3 +244,17 @@ success <- (muestra$success)
 muestra_discretizada3 <- cbind(muestra_discretizada2, success)
 head(muestra_discretizada3)
 summary(muestra_discretizada3)
+
+
+
+#---- NORMALIZACIÓN -----
+
+# Normalización min-max
+min.max <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
+# Aplicamos la función
+normalizados <- as.data.frame(lapply(muestra_discretizada3,min.max))
+
+# Normalizados 
+head(normalizados)
