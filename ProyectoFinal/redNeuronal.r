@@ -43,7 +43,7 @@ convertir_a_num <- function(data){
     return(data)
 }
 
-gtd_data <- convertir_a_num(muestra)
+gtd_data_num <- convertir_a_num(gtd_data)
 head(gtd_data_num)
 
 # ------- Creamos conjuntos de entrenamiento y prueba ---------
@@ -53,17 +53,17 @@ set.seed(123)
 
 # Quitar los eventid y success
 borrar <- c("eventid")
-gtd_data2 <- gtd_data[ , !(names(gtd_data) %in% borrar)]
+gtd_data2 <- gtd_data_num[ , !(names(gtd_data_num) %in% borrar)]
 gtd_data2$success <- as.factor(gtd_data2$success)
 str(gtd_data2)
 
-split = sample.split(gtd_data$success, SplitRatio = 0.66)
+split = sample.split(gtd_data2$success, SplitRatio = 0.66)
 summary(split)
 
-entrena = subset(gtd_data, split == TRUE)
-prueba = subset(gtd_data, split == FALSE)
+entrena = subset(gtd_data2, split == TRUE)
+prueba = subset(gtd_data2, split == FALSE)
 
-summary(entrena)
+str(entrena)
 summary(prueba)
 
 
