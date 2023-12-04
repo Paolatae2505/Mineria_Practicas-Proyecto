@@ -102,31 +102,31 @@ muestra <- gtd_data[sample(nrow(gtd_data), tamano_muestra), ]
 summary(muestra)
 
 
-#---- SELECCION DE ATRIBUTOS -----
+#---- SELECCION DE ATRIBUTOS CON CHI^2 -----
 
 library(dplyr)
 library(mlbench)
 library(FSelector)
 
-selecciona_atributos <- function(data){
-    # Utilizando el enfoque de filtros por chi cuadrada
-    pesos <- chi.squared(success~.,data=muestra)
-    pesos
+# Utilizando el enfoque de filtros por chi cuadrada
+pesos <- chi.squared(success~.,gtd_data_limpiado)
+pesos
     
-    # Pesos en orden de importancia
-    orden <- order(pesos$attr_importance)
-    # dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Importancia") # Visualizar
-    subconjunto <- rownames(pesos)[pesos$attr_importance > 0]
+# Pesos en orden de importancia
+orden <- order(pesos$attr_importance)
+dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Importancia") # Visualizar
+subconjunto <- rownames(pesos)[pesos$attr_importance > 0]
     
-    # Crea muestra con las variables que nos sirven
-    data_seleccion <- muestra[, subconjunto]
-    # Paso eventid al principio:
-    data_seleccion <- data_seleccion %>% select(eventid, everything())
-    # Añado el atributo success al final
-    success <- (muestra$success)
-    data_seleccion <- cbind(data_seleccion, success)
-    return(data_seleccion)
-}
+# Crea muestra con las variables que nos sirven
+data_seleccion <- gtd_data_limpiado[, subconjunto]
+# Paso eventid al principio:
+data_seleccion <- data_seleccion %>% select(eventid, everything())
+# Añado el atributo success al final
+success <- (gtd_data_limpiado$success)
+data_seleccion <- cbind(data_seleccion, success)
+
+str(data_seleccion)
+ncol(data_seleccion)
 
 #---- TRATAMIENTO DE VALORES PERDIDOS -----
 
