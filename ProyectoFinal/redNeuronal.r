@@ -1,4 +1,18 @@
-gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
+gtd_data_orig <- read.csv("globalterrorismdb_0718dist.csv")
+
+# Muestreo del 10%
+porcentaje_muestreo <- 0.1
+tamano_muestra <- round(nrow(gtd_data_orig) * porcentaje_muestreo)
+
+# Configuramos una semilla para reproducibilidad
+set.seed(123)
+
+# Realizamos el muestreo
+gtd_data <- gtd_data[sample(nrow(gtd_data_orig), tamano_muestra), ]
+
+# Muestra el resumen de la muestra
+summary(gtd_data)
+
 
 mode2 <- function(x) {
   ux <- unique(x)
