@@ -10,11 +10,7 @@ str(gtd_data)
 
 library(dplyr)
 
-gtd_data_con_na <- gtd_data %>%
-  mutate_all(~ ifelse(. %in% c("", " "), NA, .))
-str(gtd_data_con_na)
-
-columnas_txt <- grep("_txt$", names(gtd_data_con_na), value = TRUE)
+columnas_txt <- grep("_txt$", names(gtd_data), value = TRUE)
 print(columnas_txt)
 
 quitar_terminacion_txt <- function(columna_txt) {
@@ -61,7 +57,7 @@ for (columna in columnas_txt) {
     col_sin_txt <- quitar_terminacion_txt(columna)
     print(col_sin_txt)
     print(columna)
-    gtd_data <- crear_asociacion_unica_y_llenar(gtd_data_con_na, col_sin_txt, columna)
+    gtd_data <- crear_asociacion_unica_y_llenar(gtd_data, col_sin_txt, columna)
 }
 
 str(gtd_data)
@@ -77,8 +73,12 @@ ncol(gtd_data)
 # ---- Eliminación de columnas con más del 90% de val perdidos: -----
 
 eliminar_columnas_valores_perdidos <- function(datos, umbral = 90) {
+    # Transforma cadenas vacias a NAs
+    gtd_data_con_na <- datos %>%
+    mutate_all(~ ifelse(. %in% c("", " "), NA, .))
+  
     # Calcula el porcentaje de valores perdidos por columna
-    porcentaje_perdido <- colMeans(is.na(datos)) * 100
+    porcentaje_perdido <- colMeans(is.na(gtd_data_con_na)) * 100
   
     # Encuentra las columnas que superan el umbral
     columnas_a_eliminar <- names(porcentaje_perdido[porcentaje_perdido > umbral])
