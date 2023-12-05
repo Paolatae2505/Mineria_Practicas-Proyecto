@@ -7,7 +7,7 @@ str(gtd_data)
 # Convertimos a NA los espacios en blanco:
 
 gtd_data_limpieza <- gtd_data %>% 
-    mutate_all(~ ifelse(. %in% c("", " "), NA, .))
+    mutate_all(~ ifelse(. %in% c("", " ", "Unknown"), NA, .))
 str(gtd_data_limpieza)
 # Quitamos versión _txt de los datos:
 
@@ -251,24 +251,76 @@ discretizar_por_rango <- function(data, num_bins = 10) { # Usar sturges para la 
 gtd_data_discretizado <- gtd_data_sin_vp[, !(colnames(gtd_data_sin_vp) %in% c('eventid', 'success'))]
 str(gtd_data_discretizado)
 # discretizar con la funcion discretizar_por_rango 
-gtd_data_discretizado <- discretizar_por_rango(gtd_data_discretizado)
-str(gtd_data_discretizado)
+gtd_data_discretizado2 <- discretizar_por_rango(gtd_data_discretizado)
+str(gtd_data_discretizado2)
 eventid <- (gtd_data_sin_vp$eventid)
-gtd_data_discretizado <- cbind(eventid, gtd_data_discretizado)
+gtd_data_discretizado2 <- cbind(eventid, gtd_data_discretizado)
 success <- (gtd_data_sin_vp$success)
 gtd_data_discretizado <- cbind(gtd_data_discretizado, success)
 
 head(gtd_data_discretizado)
-summary(gtd_data_discretizado)
+str(gtd_data_sin_vp)
+str(gtd_data_discretizado)
+
+
+# ----- GENERACION CSV CON COLUMNAS NUMERICAS DISCRETIZADAS -----
+
+head(gtd_data_discretizado)
+write.csv(gtd_data_discretizado, "gtd_data_discretizado.csv", row.names = TRUE)
+
+
 
 #---- NORMALIZACIÓN -----
 
 # Normalización min-max
-min.max <- function(x) {
-  return ((x - min(x)) / (max(x) - min(x)))
+min_max <- function(x) {
+  return((x - min(x)) / (max(x) - min(x)))
 }
-# Aplicamos la función
-normalizados <- as.data.frame(lapply(gtd_data_discretizado,min.max))
 
-# Normalizados 
-head(normalizados)
+# ----- GENERACION CSV CON COLUMNAS NUMERICAS NORMALIZADAS -----
+
+gtd_data_normalizado_some <- gtd_data_sin_vp[, !(colnames(gtd_data_sin_vp) %in% c('eventid', 'success'))]
+str(gtd_data_discretizado)
+# discretizar con la funcion discretizar_por_rango 
+gtd_data_discretizado2 <- discretizar_por_rango(gtd_data_discretizado)
+str(gtd_data_discretizado2)
+eventid <- (gtd_data_sin_vp$eventid)
+gtd_data_discretizado2 <- cbind(eventid, gtd_data_discretizado)
+success <- (gtd_data_sin_vp$success)
+gtd_data_discretizado <- cbind(gtd_data_discretizado, success)
+
+# Seleccionar solo las columnas numéricas
+columnas_numericas <- sapply(gtd_data_discretizado, is.numeric)
+# Aplicar normalización solo a las columnas numéricas
+gtd_data_normalizado_some <- as.data.frame(lapply(gtd_data_discretizado, function(x) if (is.numeric(x)) min_max(x) else x))
+# Mostrar las primeras filas del conjunto de datos normalizado
+str(gtd_data_normalizado_some)
+                                             
+write.csv(gtd_data_normalizado_some, "gtd_data_normalizado_some", row.names = TRUE)
+
+# ----- GENERACION CSV CON TODAS LAS COLUMNAS NUMERICAS Y NORMALIZADAS -----
+
+# Convertir todo a numérico
+convertir_a_num <- function(data){
+    cols_names <- colnames(data)
+    j <- 1
+    set.seed(1)
+    for(i in data) {
+      n = nlevels(i)
+      if(class(i) == 'character'){
+          x <- as.factor(i)
+          data[cols_names[j]] <- as.numeric(x)
+      }
+      if(class(i) == 'factor'){
+        data[cols_names[j]] <- as.numeric(i)
+      }
+      j <- j + 1
+    }
+    return(data)
+}
+
+gtd_data_numerico <- convertir_a_num(gtd_data_sin_vp)
+gtd_data_normalizado_all <- as.data.frame(lapply(gtd_data_numerico,min.max))
+str(gtd_data_normalizado_all)
+
+write.csv(gtd_data_normalizado_all, "gtd_data_normalizado_all.csv", row.names = TRUE)
