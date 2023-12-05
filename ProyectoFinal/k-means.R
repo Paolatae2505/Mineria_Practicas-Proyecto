@@ -1,18 +1,26 @@
 # --- A CAMBIAR UNA VEZ QUE SE TENGA EL csv DE LOS PREPROCESADOS ---
 gtd_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/ProyectoFinal/globalterrorismdb_0718dist.csv")
-
 # NA's
-gtd_data_m<-data.frame(gtd_data)
-for (var in 1:ncol(gtd_data_m)) {
-    if (class(gtd_data_m[,var])=="numeric") {
-        gtd_data_m[is.na(gtd_data_m[,var]),var] <- mean(gtd_data_m[,var], na.rm = TRUE)
-    } else if (class(gtd_data_m[,var]) %in% c("character", "factor")) {
-        gtd_data_m[is.na(gtd_data_m[,var]),var] <- mode(gtd_data_m[,var])
-    } else if (class(gtd_data_m[,var]) == "integer"){
-        gtd_data_m[is.na(gtd_data_m[,var]),var] <- median(gtd_data_m[,var], na.rm = TRUE)
-    }
+mode2 <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
 }
-summary(gtd_data_m)
+imputacion <- function(data){
+  for (var in 1:ncol(data)) {
+    if (class(data[,var])=="numeric") {
+      data[is.na(data[,var]),var] <- mean(data[,var], na.rm = TRUE)
+    } else if (class(data[,var]) %in% c("character", "factor")) {
+      no_empty <- na.omit(data[,var][data[,var] != ""])
+      m <- mode2(no_empty)
+      data[is.na(data[,var]),var] <- m
+      data[data[,var]== "",var] <- m
+    } else if (class(data[,var]) == "integer"){
+      data[is.na(data[,var]),var] <- median(data[,var], na.rm = TRUE)
+    }
+  }
+  return(data)
+}
+gtd_data <-imputacion(gtd_data)
 
 # Muestreo del 1% (motivos de hardware)
 porcentaje_muestreo <- 0.01
@@ -20,7 +28,7 @@ tamano_muestra <- round(nrow(gtd_data) * porcentaje_muestreo)
 # Configuramos una semilla para reproducibilidad
 set.seed(123)
 # Realizamos el muestreo
-gtd_data <- gtd_data[sample(nrow(gtd_data), tamano_muestra), ]
+gtd_data_m <- gtd_data[sample(nrow(gtd_data), tamano_muestra), ]
 
 # convertir a numeric los character y factor
 gtd_data_numeric<-data.frame(gtd_data_m)
@@ -83,7 +91,12 @@ fviz_nbclust(normalizados, kmeans, method = "gap_stat")
 #"tau", "dunn","hubert", "sdindex", "dindex", "sdbw",
 #"all" (all indices except GAP, Gamma, Gplus and Tau)
 #"alllong" (es decir, todos los antes citados).
-resnumclust<-NbClust(normalizados, distance = "manhattan", min.nc=2, max.nc=5, method = "kmeans", index = "alllong")
+subset_df <- normalizados[, c("iyear", "country", "attacktype1")]
+porcentaje_muestreo <- 0.5
+tamano_muestra <- round(nrow(subset_df) * porcentaje_muestreo)
+# Realizamos el muestreo
+subset_df <- subset_df[sample(nrow(subset_df), tamano_muestra), ]
+resnumclust<-NbClust(subset_df, distance = "euclidean", min.nc=2, max.nc=5, method = "kmeans", index = "alllong")
 fviz_nbclust(resnumclust)
 
 #con el resultado anterior observamos que el mejor candidato es 3
@@ -93,6 +106,8 @@ str(k3)
 
 #ploteamos los cluster
 fviz_cluster(k3, data = normalizados)
+library(magrittr) # needs to be run every time you start R and want to use %>%
+library(dplyr)    # alternatively, this also loads %>%
 
 #regresamos al df original para poder continuar el analisis
 normalizados %>%
@@ -111,16 +126,16 @@ df <- normalizados
 df <- scale(df)
 df<- as.data.frame(df)
 #volvemos a aplicar factor
-df$clus<-as.factor(k2$cluster)
+df$clus<-as.factor(k3$cluster)
 #y mostramos el resultado
 #head(df)
-
+library(tidyr)
 df$clus<-factor(df$clus)
 #del df lo modificamos las columnas para agregar el cluster al que pertenece
 data_long <- gather(df, caracteristica, valor, success:1.0000, factor_key=TRUE)
-
+head(data_long)
 #por último, mostramos los resultados de la modificación anterior ARREGLAR
-ggplot(data_long, aes(as.factor(x = caracteristica),
-  y = valor,group=clus, colour = clus)
-    + stat_summary(fun = mean, geom="pointrange", size = 1)
-    + stat_summary(geom="line"))
+ggplot(data_long, aes(x = as.factor(caracteristica),
+                      y = valor,group=clus, colour = clus))+
+  stat_summary(fun = mean, geom="pointrange", size = 1)+
+  stat_summary(geom="line")
