@@ -66,3 +66,24 @@ prediccion_1 <- predict(gtd.rpart, newdata = gtd_prueba, type = "class")
 # obtenemos la matriz de confusión de las predicciones
 confusionMatrix(prediccion_1, as.factor(gtd_prueba[["success"]]))
 
+# --- AJUSTE DE HIPERPARAMETROS ---
+#Ajustamos los par�metros 1
+arbol1 <- rpart(success ~ .,
+               control = rpart.control(minsplit = 5,maxdepth = 10),
+               data = gtd_entrenamiento,method = "class")
+arbol1
+# nos da la prediccion del tipo de los datos de vino_prueba
+prediccion_1 <- predict(arbol1, newdata = gtd_prueba, type = "class")
+
+# nos da la matriz de confusion que nos indica el tipo que predijo vs el que
+# realmente era. Esto segun nuestro modelo arbol_1 para los datos vino_prueba
+confusionMatrix(prediccion_1, as.factor(gtd_prueba[["success"]]))
+
+# Ajustamos los par�metros 2
+arbol2 <- rpart(success ~ ., 
+               control = rpart.control(cp = 0),
+               data = gtd_entrenamiento,method = "class")
+rpart.plot(arbol2,main = "Exito de ataque")
+
+# nos da la prediccion del tipo de los datos de vino_prueba
+prediccion_2 <- predict(arbol2, newdata = gtd_prueba,type = "class")
