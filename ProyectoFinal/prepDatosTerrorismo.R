@@ -8,7 +8,13 @@ str(gtd_data)
 # ------------- LIMPIEZA PREVIA A LA SELECCIÓN -------------
 # -------- Quitamos versión de texto de los datos ----------
 
-columnas_txt <- grep("_txt$", names(gtd_data), value = TRUE)
+library(dplyr)
+
+gtd_data_con_na <- gtd_data %>%
+  mutate_all(~ ifelse(. %in% c("", " "), NA, .))
+str(gtd_data_con_na)
+
+columnas_txt <- grep("_txt$", names(gtd_data_con_na), value = TRUE)
 print(columnas_txt)
 
 quitar_terminacion_txt <- function(columna_txt) {
@@ -55,7 +61,7 @@ for (columna in columnas_txt) {
     col_sin_txt <- quitar_terminacion_txt(columna)
     print(col_sin_txt)
     print(columna)
-    gtd_data <- crear_asociacion_unica_y_llenar(gtd_data, col_sin_txt, columna)
+    gtd_data <- crear_asociacion_unica_y_llenar(gtd_data_con_na, col_sin_txt, columna)
 }
 
 str(gtd_data)
@@ -65,7 +71,7 @@ for (columna in columnas_txt) {
   gtd_data <- gtd_data[, -which(names(gtd_data) == columna), drop = FALSE]
 }
 
-summary(gtd_data)
+str(gtd_data)
 ncol(gtd_data)
 
 # ---- Eliminación de columnas con más del 90% de val perdidos: -----
@@ -85,7 +91,7 @@ eliminar_columnas_valores_perdidos <- function(datos, umbral = 90) {
 
 # Ejemplo de uso con tus datos
 gtd_data_limpiado <- eliminar_columnas_valores_perdidos(gtd_data, 90)
-summary(gtd_data_limpiado)
+str(gtd_data_limpiado)
 ncol(gtd_data_limpiado)
 
 # Muestreo del 10%
