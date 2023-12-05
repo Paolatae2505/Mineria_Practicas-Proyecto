@@ -281,9 +281,19 @@ min_max <- function(x) {
 
 # Seleccionar solo las columnas numéricas
 columnas_numericas <- sapply(gtd_data_discretizado, is.numeric)
+# quitarle las columnas eventid y success al data set muestra
+gtd_data_num <- columnas_numericas[, !(colnames(columnas_numericas) %in% c('eventid', 'success'))]
+str(gtd_data_num)
 # Aplicar normalización solo a las columnas numéricas
-gtd_data_normalizado_some <- as.data.frame(lapply(gtd_data_discretizado, function(x) if (is.numeric(x)) min_max(x) else x))
-# Mostrar las primeras filas del conjunto de datos normalizado
+gtd_data_normalizado_some <- as.data.frame(lapply(gtd_data_num, function(x) if (is.numeric(x)) min_max(x) else x))
+str(gtd_data_normalizado_some)
+eventid <- (gtd_data_discretizado$eventid)
+gtd_data_normalizado <- cbind(eventid, gtd_data_normalizado_some)
+success <- (gtd_data_discretizado$success)
+gtd_data_normalizado_some <- cbind(gtd_data_normalizado, success)
+
+head(gtd_data_normalizado_some)
+str(gtd_data_discretizado)
 str(gtd_data_normalizado_some)
                                              
 write.csv(gtd_data_normalizado_some, "gtd_data_normalizado_some.csv", row.names = TRUE)
@@ -310,7 +320,12 @@ convertir_a_num <- function(data){
 }
 
 gtd_data_numerico <- convertir_a_num(gtd_data_sin_vp)
-gtd_data_normalizado_all <- as.data.frame(lapply(gtd_data_numerico,min.max))
+gtd_data_num <- gtd_data_numerico[, !(colnames(gtd_data_numerico) %in% c('eventid', 'success'))]
+gtd_data_normalizado_all <- as.data.frame(lapply(gtd_data_num,min.max))
+eventid <- (gtd_data_numerico$eventid)
+gtd_data_normalizado_all2 <- cbind(eventid, gtd_data_normalizado_all)
+success <- (gtd_data_numerico$success)
+gtd_data_normalizado_all <- cbind(gtd_data_normalizado_all2, success)
 str(gtd_data_normalizado_all)
 
 write.csv(gtd_data_normalizado_all, "gtd_data_normalizado_all.csv", row.names = TRUE)
