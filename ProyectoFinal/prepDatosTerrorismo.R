@@ -2,15 +2,18 @@
 gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
 str(gtd_data)
 
-#borrar <- c("alternative_txt")
-#gtd_data <- gtd_data[ , !(names(gtd_data) %in% borrar)]
-
 # ------------- LIMPIEZA PREVIA A LA SELECCIÓN -------------
-# -------- Quitamos versión de texto de los datos ----------
+
+# Convertimos a NA los espacios en blanco:
+
+gtd_data_limpieza <- gtd_data %>% 
+    mutate_all(~ ifelse(. %in% c("", " "), NA, .))
+str(gtd_data_limpieza)
+# Quitamos versión _txt de los datos:
 
 library(dplyr)
 
-columnas_txt <- grep("_txt$", names(gtd_data), value = TRUE)
+columnas_txt <- grep("_txt$", names(gtd_data_limpieza), value = TRUE)
 print(columnas_txt)
 
 quitar_terminacion_txt <- function(columna_txt) {
@@ -55,26 +58,24 @@ crear_asociacion_unica_y_llenar <- function(gtd_data, variable1, variable2) {
 # Recorrer las columnas que terminan en "_txt"
 for (columna in columnas_txt) {
     col_sin_txt <- quitar_terminacion_txt(columna)
-    print(col_sin_txt)
-    print(columna)
-    gtd_data <- crear_asociacion_unica_y_llenar(gtd_data, col_sin_txt, columna)
+    gtd_data_limpieza <- crear_asociacion_unica_y_llenar(gtd_data_limpieza, col_sin_txt, columna)
 }
-
-str(gtd_data)
 
 # Eliminar columnas con terminación en _txt
 for (columna in columnas_txt) {
-  gtd_data <- gtd_data[, -which(names(gtd_data) == columna), drop = FALSE]
+  gtd_data_limpieza <- gtd_data_limpieza[, -which(names(gtd_data_limpieza) == columna), drop = FALSE]
 }
 
-str(gtd_data)
-ncol(gtd_data)
+# Vemos el resultado:
+str(gtd_data_limpieza)
+ncol(gtd_data_limpieza)
 
-# ---- Eliminación de columnas con más del 90% de val perdidos: -----
+
+# -- Eliminación de columnas con más del 90% de valores perdidos: --
 
 eliminar_columnas_valores_perdidos <- function(datos, umbral = 90) {
     # Transforma cadenas vacias a NAs
-    gtd_data_con_na <- datos %>%
+    gtd_data_con_na <- datos %>% 
     mutate_all(~ ifelse(. %in% c("", " "), NA, .))
   
     # Calcula el porcentaje de valores perdidos por columna
@@ -89,54 +90,56 @@ eliminar_columnas_valores_perdidos <- function(datos, umbral = 90) {
     return(datos_limpio)
 }
 
-# Ejemplo de uso con tus datos
-gtd_data_limpiado <- eliminar_columnas_valores_perdidos(gtd_data, 90)
-str(gtd_data_limpiado)
-ncol(gtd_data_limpiado)
+# Aplicamos a gtd_data
+gtd_data_limpieza <- eliminar_columnas_valores_perdidos(gtd_data_limpieza, 90)
+str(gtd_data_limpieza)
+ncol(gtd_data_limpieza)
 
-# Muestreo del 10%
+# Utilizamos un muestreo del 10% para facilitar la ejecución
 porcentaje_muestreo <- 0.1
-tamano_muestra <- round(nrow(gtd_data) * porcentaje_muestreo)
+tamano_muestra <- round(nrow(gtd_data_limpiado) * porcentaje_muestreo)
 
-# Configuramos una semilla para reproducibilidad
 set.seed(123)
+muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpiado), tamano_muestra), ]
 
-# Realizamos el muestreo
-muestra <- gtd_data[sample(nrow(gtd_data), tamano_muestra), ]
-
-# Muestra el resumen de la muestra
+# Observamos la muestra
 summary(muestra)
 
 
-#---- SELECCION DE ATRIBUTOS CON CHI^2 -----
+# ---- SELECCION DE ATRIBUTOS CON CHI^2 -----
 
 library(dplyr)
 library(mlbench)
 library(FSelector)
 
+# correlaciones <- cor(gtd_data[, -1], gtd_data$success)
+# Imprimir las correlaciones
+# print(correlaciones)
+
 # Utilizando el enfoque de filtros por chi cuadrada
-pesos <- chi.squared(success~.,gtd_data_limpiado)
+pesos <- chi.squared(success ~ ., data = muestra)
 pesos
     
 # Pesos en orden de importancia
 orden <- order(pesos$attr_importance)
 dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Importancia") # Visualizar
 subconjunto <- rownames(pesos)[pesos$attr_importance > 0]
-    
-# Crea muestra con las variables que nos sirven
-data_seleccion <- gtd_data_limpiado[, subconjunto]
-# Paso eventid al principio:
-data_seleccion <- data_seleccion %>% select(eventid, everything())
-# Añado el atributo success al final
-success <- (gtd_data_limpiado$success)
-data_seleccion <- cbind(data_seleccion, success)
 
-str(data_seleccion)
-ncol(data_seleccion)
+# Crea muestra con las variables que nos sirven
+gtd_data_seleccion <- muestra[, subconjunto]
+# Paso eventid al principio:
+gtd_data_seleccion <- gtd_data_seleccion %>% select(eventid, everything())
+# Añado el atributo success al final
+success <- (muestra$success)
+gtd_data_seleccion <- cbind(gtd_data_seleccion, success)
+
+str(gtd_data_seleccion)
+ncol(gtd_data_seleccion)
 
 #---- TRATAMIENTO DE VALORES PERDIDOS -----
 
-# remplazando por media / moda / mediana
+# remplazando por media / moda / mediana :
+
 mode2 <- function(x) {
   ux <- unique(x)
   ux[which.max(tabulate(match(x, ux)))]
@@ -157,7 +160,12 @@ imputacion <- function(data){
     return(data)
 }
 
-# -- reemplazando usando aprendizaje automatico --
+# Aplicamos:
+gtd_data_sin_vp <- imputacion(gtd_data_seleccion)
+str(gtd_data_sin_vp)
+
+# reemplazando usando aprendizaje automatico :
+
 install.packages("missForest")
 library(missForest)
 
@@ -179,8 +187,8 @@ for(i in gtd_data_numeric) {
 }
 
 # Imputar los valores perdidos, usando los parámetros con valores default
-gtd_data_numeric_imp <- missForest(gtd_data_numeric)
-summary(gtd_data_numeric_imp)
+gtd_data_sin_vp2 <- missForest(gtd_data_numeric)
+summary(gtd_data_sin_vp2)
 
 
 #---- ELIMINACIÓN DE VALORES ATÍPICOS -----
@@ -215,7 +223,10 @@ eliminar_atipicos <- function(datos, umbral = 1.5) {
   return(datos_limpios)
 }
 
-
+# Aplicamos a nuestro dataset:
+str(gtd_data_sin_vp)
+gtd_data_sin_atipicos <- eliminar_atipicos(gtd_data_sin_vp)
+head(gtd_data_sin_atipicos)
 
 #---- DISCRETIZACIÓN -----
 library(dplyr)
@@ -237,21 +248,18 @@ discretizar_por_rango <- function(data, num_bins = 10) { # Usar sturges para la 
 }
 
 # quitarle las columnas eventid y success al data set muestra
-muestra_m2 <- muestra_m[, !(colnames(muestra_m) %in% c('eventid', 'success'))]
-
+gtd_data_discretizado <- gtd_data_sin_vp[, !(colnames(gtd_data_sin_vp) %in% c('eventid', 'success'))]
+str(gtd_data_discretizado)
 # discretizar con la funcion discretizar_por_rango 
-muestra_discretizada <- discretizar_por_rango(muestra_m2)
+gtd_data_discretizado <- discretizar_por_rango(gtd_data_discretizado)
+str(gtd_data_discretizado)
+eventid <- (gtd_data_sin_vp$eventid)
+gtd_data_discretizado <- cbind(eventid, gtd_data_discretizado)
+success <- (gtd_data_sin_vp$success)
+gtd_data_discretizado <- cbind(gtd_data_discretizado, success)
 
-# Añadir 'eventid' como primera columna y 'success' como última
-# muestra_sin_atipicos <- eliminar_atipicos(na.omit(muestra))
-eventid <- (muestra$eventid)
-muestra_discretizada2 <- cbind(eventid, muestra_discretizada)
-success <- (muestra$success)
-muestra_discretizada3 <- cbind(muestra_discretizada2, success)
-head(muestra_discretizada3)
-summary(muestra_discretizada3)
-
-
+head(gtd_data_discretizado)
+summary(gtd_data_discretizado)
 
 #---- NORMALIZACIÓN -----
 
@@ -260,7 +268,7 @@ min.max <- function(x) {
   return ((x - min(x)) / (max(x) - min(x)))
 }
 # Aplicamos la función
-normalizados <- as.data.frame(lapply(muestra_discretizada3,min.max))
+normalizados <- as.data.frame(lapply(gtd_data_discretizado,min.max))
 
 # Normalizados 
 head(normalizados)
