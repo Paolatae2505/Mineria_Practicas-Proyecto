@@ -279,16 +279,6 @@ min_max <- function(x) {
 
 # ----- GENERACION CSV CON COLUMNAS NUMERICAS NORMALIZADAS -----
 
-gtd_data_normalizado_some <- gtd_data_sin_vp[, !(colnames(gtd_data_sin_vp) %in% c('eventid', 'success'))]
-str(gtd_data_discretizado)
-# discretizar con la funcion discretizar_por_rango 
-gtd_data_discretizado2 <- discretizar_por_rango(gtd_data_discretizado)
-str(gtd_data_discretizado2)
-eventid <- (gtd_data_sin_vp$eventid)
-gtd_data_discretizado2 <- cbind(eventid, gtd_data_discretizado)
-success <- (gtd_data_sin_vp$success)
-gtd_data_discretizado <- cbind(gtd_data_discretizado, success)
-
 # Seleccionar solo las columnas numéricas
 columnas_numericas <- sapply(gtd_data_discretizado, is.numeric)
 # Aplicar normalización solo a las columnas numéricas
@@ -296,7 +286,7 @@ gtd_data_normalizado_some <- as.data.frame(lapply(gtd_data_discretizado, functio
 # Mostrar las primeras filas del conjunto de datos normalizado
 str(gtd_data_normalizado_some)
                                              
-write.csv(gtd_data_normalizado_some, "gtd_data_normalizado_some", row.names = TRUE)
+write.csv(gtd_data_normalizado_some, "gtd_data_normalizado_some.csv", row.names = TRUE)
 
 # ----- GENERACION CSV CON TODAS LAS COLUMNAS NUMERICAS Y NORMALIZADAS -----
 
