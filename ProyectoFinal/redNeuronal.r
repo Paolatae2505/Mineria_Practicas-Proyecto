@@ -148,4 +148,13 @@ prediccion
 # Verificar los resultados
 print(head(round(prediccion,2)))
 
+prediccion_c <-round(prediccion,2)
+# Ahora vamos a crear una matriz de confusión simple:
+labels <- c("success", "no success")
 
+# Red 1
+prediction_label <- data.frame(max.col(prediccion_c)) %>%
+  mutate(prediccion_c=labels[max.col.prediccion_c.]) %>%
+  select(2) %>%
+  unlist()
+table(prueba$success, prediction_label)
