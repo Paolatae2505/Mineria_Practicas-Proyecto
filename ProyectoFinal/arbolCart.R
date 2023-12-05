@@ -65,7 +65,13 @@ rpart.plot(gtd.rpart)
 prediccion_1 <- predict(gtd.rpart, newdata = gtd_prueba, type = "class")
 # obtenemos la matriz de confusión de las predicciones
 confusionMatrix(prediccion_1, as.factor(gtd_prueba[["success"]]))
-
+#Evaluacion Final
+TN <- conf_matrix[["table"]][1][1]
+TP <- conf_matrix[["table"]][2][2]
+FN <- conf_matrix[["table"]][1][2]
+FP <- conf_matrix[["table"]][2][1]
+source("Medidas.R") #cambiar segun la ruta
+medidas <- tabla_medidas(TP,TN,FP,FN)
 # --- AJUSTE DE HIPERPARAMETROS ---
 #Ajustamos los par�metros 1
 arbol1 <- rpart(success ~ .,
