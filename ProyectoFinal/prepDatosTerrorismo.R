@@ -276,19 +276,19 @@ min_max <- function(x) {
   return((x - min(x)) / (max(x) - min(x)))
 }
 
-# ----- GENERACION CSV CON COLUMNAS NUMERICAS NORMALIZADAS -----
+# ----- GENERACION CSV CON ÚNICAMENTE COLUMNAS NUMÉRICAS NORMALIZADAS -----
 
 # Seleccionar solo las columnas numéricas
-columnas_numericas <- sapply(gtd_data_discretizado, is.numeric)
+columnas_numericas <- sapply(gtd_data_sin_vp, is.numeric)
 # quitarle las columnas eventid y success al data set muestra
-gtd_data_num <- columnas_numericas[, !(colnames(columnas_numericas) %in% c('eventid', 'success'))]
+gtd_data_num <- gtd_data_sin_vp[, !(colnames(gtd_data_sin_vp) %in% c('eventid', 'success'))]
 str(gtd_data_num)
 # Aplicar normalización solo a las columnas numéricas
 gtd_data_normalizado_some <- as.data.frame(lapply(gtd_data_num, function(x) if (is.numeric(x)) min_max(x) else x))
 str(gtd_data_normalizado_some)
-eventid <- (gtd_data_discretizado$eventid)
+eventid <- (gtd_data_sin_vp$eventid)
 gtd_data_normalizado <- cbind(eventid, gtd_data_normalizado_some)
-success <- (gtd_data_discretizado$success)
+success <- (gtd_data_sin_vp$success)
 gtd_data_normalizado_some <- cbind(gtd_data_normalizado, success)
 
 head(gtd_data_normalizado_some)
