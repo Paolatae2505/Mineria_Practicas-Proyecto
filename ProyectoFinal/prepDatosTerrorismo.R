@@ -7,7 +7,7 @@ str(gtd_data)
 # Convertimos a NA los espacios en blanco:
 
 gtd_data_limpieza <- gtd_data %>% 
-    mutate_all(~ ifelse(. %in% c("", " ", "Unknown"), NA, .))
+    mutate_all(~ ifelse(. %in% c("", " ", "Unknown", -9,-99), NA, .))
 str(gtd_data_limpieza)
 # Quitamos versión _txt de los datos:
 
