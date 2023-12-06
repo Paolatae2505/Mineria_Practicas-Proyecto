@@ -105,13 +105,13 @@ muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpieza), tamano_muestra), ]
 # Observamos la muestra
 summary(muestra)
 
-# ---- IGUALAMOS LAS INSTANCIAS DE SUCCESS = 0 A 1 ---- 
-library(dplyr)
-gtd_data_s1 <- gtd_data[gtd_data$success == 1,]
-gtd_data_s0 <- gtd_data[gtd_data$success == 0,]
+# ---- IGUALAMOS LA CANTIDAD DE INSTANCIAS DE SUCCESS = 0 CON las = a 1 ---- 
+set.seed(123)
+gtd_data_s1 <- gtd_data_limpieza[gtd_data_limpieza$success == 1,]
+gtd_data_s0 <- gtd_data_limpieza[gtd_data_limpieza$success == 0,]
 occurrences_s0 <- nrow(gtd_data_s0)
-gtd_data_s1 <- gtd_data_s1[sample(nrow(gtd_data_s1), occurrences_s0), ]
-gtd_data <- bind_rows(gtd_data_s1, gtd_data_s0)
+gtd_data_s1 <- gtd_data_s1[sample(nrow(gtd_data_s1), occurrences_s0),]
+muestra <- bind_rows(gtd_data_s1, gtd_data_s0)
 
 # ---- SELECCION DE ATRIBUTOS CON CHI^2 -----
 
@@ -175,7 +175,13 @@ str(gtd_data_sin_vp)
 
 install.packages("missForest")
 library(missForest)
-
+# Utilizamos un muestreo del 1% debido al bajo poder de procesamiento
+# con el que contamos
+porcentaje_muestreo <- 0.01
+tamano_muestra <- round(nrow(muestra) * porcentaje_muestreo)
+muestra <- muestra[sample(nrow(muestra), tamano_muestra),]
+# Observamos la muestra
+summary(muestra)
 # convertir a numeric los character y factor
 gtd_data_numeric<-data.frame(muestra)
 cols_names <- colnames(gtd_data)
