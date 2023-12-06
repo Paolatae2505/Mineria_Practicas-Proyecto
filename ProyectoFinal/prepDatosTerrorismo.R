@@ -6,12 +6,11 @@ str(gtd_data)
 
 # Convertimos a NA los espacios en blanco:
 
+library(dplyr)
 gtd_data_limpieza <- gtd_data %>% 
     mutate_all(~ ifelse(. %in% c("", " ", "Unknown", -9,-99), NA, .))
 str(gtd_data_limpieza)
 # Quitamos versión _txt de los datos:
-
-library(dplyr)
 
 columnas_txt <- grep("_txt$", names(gtd_data_limpieza), value = TRUE)
 print(columnas_txt)
@@ -94,6 +93,11 @@ eliminar_columnas_valores_perdidos <- function(datos, umbral = 90) {
 gtd_data_limpieza <- eliminar_columnas_valores_perdidos(gtd_data_limpieza, 90)
 str(gtd_data_limpieza)
 ncol(gtd_data_limpieza)
+
+# Eliminamos columnas de forma manual
+columnas_a_eliminar <- c("location", "summary", "nwound", "propcomment", "addnotes", "scite2", "scite3", "related" )
+gtd_data_limpieza <- gtd_data_limpieza[, !(names(gtd_data_limpieza) %in% columnas_a_eliminar)]
+str(gtd_data_limpieza)
 
 # Utilizamos un muestreo del 10% para facilitar la ejecución
 porcentaje_muestreo <- 0.1
