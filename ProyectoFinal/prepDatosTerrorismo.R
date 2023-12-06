@@ -316,7 +316,7 @@ convertir_a_num <- function(data){
 
 gtd_data_numerico <- convertir_a_num(gtd_data_sin_vp)
 gtd_data_num <- gtd_data_numerico[, !(colnames(gtd_data_numerico) %in% c('eventid', 'success'))]
-gtd_data_normalizado_all <- as.data.frame(lapply(gtd_data_num,min.max))
+gtd_data_normalizado_all <- as.data.frame(lapply(gtd_data_num,min_max))
 eventid <- (gtd_data_numerico$eventid)
 gtd_data_normalizado_all2 <- cbind(eventid, gtd_data_normalizado_all)
 success <- (gtd_data_numerico$success)
