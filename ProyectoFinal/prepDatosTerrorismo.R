@@ -97,10 +97,10 @@ ncol(gtd_data_limpieza)
 
 # Utilizamos un muestreo del 10% para facilitar la ejecución
 porcentaje_muestreo <- 0.1
-tamano_muestra <- round(nrow(gtd_data_limpiado) * porcentaje_muestreo)
+tamano_muestra <- round(nrow(gtd_data_limpieza) * porcentaje_muestreo)
 
 set.seed(123)
-muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpiado), tamano_muestra), ]
+muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpieza), tamano_muestra), ]
 
 # Observamos la muestra
 summary(muestra)
@@ -199,40 +199,23 @@ summary(gtd_data_sin_vp2)
 
 
 #---- ELIMINACIÓN DE VALORES ATÍPICOS -----
-
-# Crear una función para eliminar valores atípicos
-eliminar_atipicos <- function(datos, umbral = 1.5) {
-  # Identificar columnas numéricas
-  columnas_numericas <- sapply(datos, is.numeric)
+quitar_atipicos <- function(data, threshold = 1.5) {
+  # Calcular el rango intercuartílico para cada columna
+  iqr <- apply(data, 2, IQR)
   
-  # Inicializar el conjunto de datos resultante
-  datos_limpios <- datos
+  # Calcular los límites para identificar valores atípicos
+  lower_limit <- colMeans(data) - threshold * iqr
+  upper_limit <- colMeans(data) + threshold * iqr
   
-  # Iterar sobre las columnas numéricas
-  for (columna in colnames(datos)[columnas_numericas]) {
-    # Calcular el primer y tercer cuartil
-    Q1 <- quantile(datos[, columna], 0.25)
-    Q3 <- quantile(datos[, columna], 0.75)
-    
-    # Calcular el rango intercuartílico (IQR)
-    IQR_valor <- Q3 - Q1
-    
-    # Definir el umbral basado en el IQR
-    umbral_atipico <- umbral * IQR_valor
-    
-    # Identificar índices de valores atípicos
-    indices_atipicos <- which(datos[, columna] < (Q1 - umbral_atipico) | datos[, columna] > (Q3 + umbral_atipico))
-    
-    # Filtrar el conjunto de datos para quitar los valores atípicos
-    datos_limpios <- datos_limpios[-indices_atipicos, ]
+  # Filtrar los valores atípicos
+  data_filtrado <- data
+  for (col in 1:ncol(data)) {
+    data_filtrado[, col] <- ifelse(data[, col] < lower_limit[col] | data[, col] > upper_limit[col], NA, data[, col])
   }
-  
-  return(datos_limpios)
 }
-
 # Aplicamos a nuestro dataset:
 str(gtd_data_sin_vp)
-gtd_data_sin_atipicos <- eliminar_atipicos(gtd_data_sin_vp)
+gtd_data_sin_atipicos <- quitar_atipicos(gtd_data_sin_vp)
 head(gtd_data_sin_atipicos)
 
 #---- DISCRETIZACIÓN -----
