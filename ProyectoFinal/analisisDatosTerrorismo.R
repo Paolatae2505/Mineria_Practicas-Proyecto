@@ -31,9 +31,9 @@ for(i in gtd_data) {
   }
   j <-j+1
 }
-distribucion[1] = "beta"
+distribucion[1] = "normal sesgada a la izquierda"
 distribucion[14] = "normal"
-distribucion[15] = "beta"
+distribucion[15] = "normal sesgada a la izquierda"
 distribucion[71] = "lognormal"
 distribucion[102] = "lognormal"
 distribucion[108] = "lognormal"
