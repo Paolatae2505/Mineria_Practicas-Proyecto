@@ -105,6 +105,13 @@ muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpiado), tamano_muestra), ]
 # Observamos la muestra
 summary(muestra)
 
+# ---- IGUALAMOS LAS INSTANCIAS DE SUCCESS = 0 A 1 ---- 
+library(dplyr)
+gtd_data_s1 <- gtd_data[gtd_data$success == 1,]
+gtd_data_s0 <- gtd_data[gtd_data$success == 0,]
+occurrences_s0 <- nrow(gtd_data_s0)
+gtd_data_s1 <- gtd_data_s1[sample(nrow(gtd_data_s1), occurrences_s0), ]
+gtd_data <- bind_rows(gtd_data_s1, gtd_data_s0)
 
 # ---- SELECCION DE ATRIBUTOS CON CHI^2 -----
 
