@@ -248,7 +248,7 @@ discretizar_por_rango <- function(data, num_bins = 10) { # Usar sturges para la 
     # Verificar el rango de la columna antes de discretizar
     cat("Rango de", columna, ":", range(data[[columna]]), "\n")
     
-    data[[paste0(columna, "_disc")]] <- cut_interval(data[[columna]], n = num_bins, dig.lab = 9)
+    data[[columna]] <- cut_interval(data[[columna]], n = num_bins, dig.lab = 9)
   }
 
   return(data)
@@ -260,15 +260,14 @@ str(gtd_data_discretizado)
 # discretizar con la funcion discretizar_por_rango 
 gtd_data_discretizado2 <- discretizar_por_rango(gtd_data_discretizado)
 str(gtd_data_discretizado2)
-eventid <- (gtd_data_sin_vp$eventid)
-gtd_data_discretizado2 <- cbind(eventid, gtd_data_discretizado)
-success <- (gtd_data_sin_vp$success)
-gtd_data_discretizado <- cbind(gtd_data_discretizado, success)
+eventid <- as.factor(gtd_data_sin_vp$eventid)
+gtd_data_discretizado2 <- cbind(eventid, gtd_data_discretizado2)
+success <- as.factor(gtd_data_sin_vp$success)
+gtd_data_discretizado2 <- cbind(gtd_data_discretizado2, success)
 
 head(gtd_data_discretizado)
 str(gtd_data_sin_vp)
-str(gtd_data_discretizado)
-
+str(gtd_data_discretizado2)
 
 # ----- GENERACION CSV CON COLUMNAS NUMERICAS DISCRETIZADAS -----
 
