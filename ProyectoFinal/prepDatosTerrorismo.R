@@ -100,14 +100,12 @@ gtd_data_limpieza <- gtd_data_limpieza[, !(names(gtd_data_limpieza) %in% columna
 str(gtd_data_limpieza)
 
 # Utilizamos un muestreo del 10% para facilitar la ejecución
-porcentaje_muestreo <- 0.1
-tamano_muestra <- round(nrow(gtd_data_limpieza) * porcentaje_muestreo)
-
-set.seed(123)
-muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpieza), tamano_muestra), ]
-
+#porcentaje_muestreo <- 0.1
+#tamano_muestra <- round(nrow(gtd_data_limpieza) * porcentaje_muestreo)
+#set.seed(123)
+#muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpieza), tamano_muestra), ]
 # Observamos la muestra
-summary(muestra)
+#summary(muestra)
 
 # ---- IGUALAMOS LA CANTIDAD DE INSTANCIAS DE SUCCESS = 0 CON las = a 1 ---- 
 set.seed(123)
