@@ -100,14 +100,12 @@ gtd_data_limpieza <- gtd_data_limpieza[, !(names(gtd_data_limpieza) %in% columna
 str(gtd_data_limpieza)
 
 # Utilizamos un muestreo del 10% para facilitar la ejecución
-porcentaje_muestreo <- 0.1
-tamano_muestra <- round(nrow(gtd_data_limpieza) * porcentaje_muestreo)
-
-set.seed(123)
-muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpieza), tamano_muestra), ]
-
+#porcentaje_muestreo <- 0.1
+#tamano_muestra <- round(nrow(gtd_data_limpieza) * porcentaje_muestreo)
+#set.seed(123)
+#muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpieza), tamano_muestra), ]
 # Observamos la muestra
-summary(muestra)
+#summary(muestra)
 
 # ---- IGUALAMOS LA CANTIDAD DE INSTANCIAS DE SUCCESS = 0 CON las = a 1 ---- 
 set.seed(123)
@@ -209,24 +207,57 @@ summary(gtd_data_sin_vp2)
 
 
 #---- ELIMINACIÓN DE VALORES ATÍPICOS -----
-quitar_atipicos <- function(data, threshold = 1.5) {
-  # Calcular el rango intercuartílico para cada columna
-  iqr <- apply(data, 2, IQR)
+columnas_con_nas <- colSums(is.na(gtd_data_sin_vp)) > 0
+columnas_con_nas <- names(columnas_con_nas[columnas_con_nas])
+print(columnas_con_nas)
+quitar_atipicos <- function(columna, threshold = 1.5) {
+  # Calcular el rango intercuartílico para la columna
+  iqr <- IQR(columna, na.rm = TRUE)
   
   # Calcular los límites para identificar valores atípicos
-  lower_limit <- colMeans(data) - threshold * iqr
-  upper_limit <- colMeans(data) + threshold * iqr
+  lower_limit <- median(columna, na.rm = TRUE) - threshold * iqr
+  upper_limit <- median(columna, na.rm = TRUE) + threshold * iqr
   
   # Filtrar los valores atípicos
-  data_filtrado <- data
-  for (col in 1:ncol(data)) {
-    data_filtrado[, col] <- ifelse(data[, col] < lower_limit[col] | data[, col] > upper_limit[col], NA, data[, col])
-  }
+  columna_filtrada <- ifelse(columna < lower_limit | columna > upper_limit, NA, columna)
+  
+  return(columna_filtrada)
 }
+
+columnas_con_nans <- colSums(is.na(gtd_data_sin_vp)) > 0
+
+# Mostrar las columnas con valores faltantes
+print(columnas_con_nans)
 # Aplicamos a nuestro dataset:
 str(gtd_data_sin_vp)
-gtd_data_sin_atipicos <- quitar_atipicos(gtd_data_sin_vp)
-head(gtd_data_sin_atipicos)
+columnas_numericas <- gtd_data_sin_vp[sapply(gtd_data_sin_vp, is.numeric)]
+str(columnas_numericas)
+print(dim(gtd_data_sin_vp))
+hay_infinitos <- sapply(columnas_numericas, function(col) any(is.infinite(col)))
+# Imprimir el resultado
+print(hay_infinitos)
+
+hay_nas <- sapply(columnas_numericas, function(col) any(is.na(col)))
+
+# Imprimir el resultado
+print(hay_nas)
+# Verificar las columnas seleccionadas y sus tipos
+print(sapply(columnas_numericas, class))
+for (nombre_columna in names(columnas_numericas)) {
+  gtd_data_sin_vp[[nombre_columna]] <- quitar_atipicos(gtd_data_sin_vp[[nombre_columna]])
+}
+
+
+#gtd_data_sin_atipicos <- quitar_atipicos(gtd_data_sin_vp)
+head(gtd_data_sin_vp)
+summary(gtd_data_sin_vp)
+
+hay_nas_en_data <- any(is.na(gtd_data_sin_vp))
+print(hay_nas_en_data)
+
+columnas_con_nas <- colSums(is.na(gtd_data_sin_vp)) > 0
+columnas_con_nas <- names(columnas_con_nas[columnas_con_nas])
+print(columnas_con_nas)
 
 #---- DISCRETIZACIÓN -----
 library(dplyr)

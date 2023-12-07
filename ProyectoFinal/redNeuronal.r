@@ -158,3 +158,12 @@ prediction_label <- data.frame(max.col(prediccion_c)) %>%
   select(2) %>%
   unlist()
 table(prueba$success, prediction_label)
+
+# --- EVALUACION ---
+# Guardar las variables para la evaluación
+TP <- 1
+TN <- 2
+FP <- 3
+FN <- 4
+confusionRedNeuronal <- c(TP, TN, FP, FN)
+save(confusionRedNeuronal, file = "confusionRedNeuronal.RData")
