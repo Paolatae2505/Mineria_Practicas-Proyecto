@@ -1,6 +1,17 @@
+install.packages("tidyverse")
+install.packages("corrplot")
+install.packages("ggplot2")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("readr")
+install.packages("purrr")
+install.packages("tibble")
+install.packages("stringr")
+install.packages("forcats")
+
 require(tidyverse)
 library(corrplot)
-
+#Cargar los datos
 gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
 
 # Visualizar las primeras filas del conjunto de datos
@@ -44,27 +55,20 @@ distribucion[120] = "lognormal"
                                 
 # Calcular métricas
 Valores_Perdidos = sapply(gtd_data, function(x) sum(is.na(x)) / length(x) * 100)
-#Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
-#Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
 
+### Análisis de Categoricas como factores
 #Verificar cuales atributos son factores
 sapply(gtd_data, function(x) is.factor(x))
-
 #obtener variables numericas
 cols_numeric <- colnames(gtd_data[,sapply(gtd_data,is.numeric)])
 numeric_gtd_data <- gtd_data[cols_numeric]
 #Ver las variables categoricas
 resumen_categoricas <- summary(gtd_data)
-
-
 # Identificar las variables categóricas
 variables_categoricas <- sapply(gtd_data, function(columna) is.factor(columna) | is.character(columna))
-
 # Mostrar las variables categóricas
 nombres_categoricos <- names(variables_categoricas[variables_categoricas])
 print(nombres_categoricos)
-nombres_categoricos
-
 #Clase de las variables
 sapply(gtd_data, class)
 # Verificamos cuales columnas son factores
@@ -72,7 +76,7 @@ factores <- sapply(gtd_data, is.factor)
 columnas_factores <- names(factores[factores])
                                 
 #---------------------------------------------------------------------
-#Programa para obtener Factores de las Categoricas 
+#Programa para convertir ciertas categorias a factores
                                 
 # Obtener las columnas de caracteres
 columnas_caracter <- sapply(gtd_data, is.character)
@@ -96,7 +100,16 @@ for (col in names(gtd_data[columnas_caracter])) {
 
 # Mostrar las columnas identificadas como factores
 print(columnas_factores)
+#---------------------------------------------------------
+# Ubicamos las columnas que se convierten a factores
+gtd_data[columnas_factores] <- lapply(gtd_data[columnas_factores], as.factor)
+#---------------------------------------------------------------
+# Calcular las frecuencias y los niveles
+Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
+Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
 
+#---------------------------------------------------------------------
+# Programa para calcular los valores permitidos
 allowed_values <-  vector( length=length(names(gtd_data)))
 
 j <- 1
@@ -146,11 +159,7 @@ for(i in gtd_data) {
   j <-j+1
 }
 print(atypical)
-Niveles = sapply(gtd_data, function(x) ifelse(is.factor(x), paste(levels(x), collapse = ", "), NA))
-Frecuencia = sapply(gtd_data, function(x) ifelse(is.factor(x), table(x), NA))
 
-#---------------------------------------------------------
-gtd_data[columnas_factores] <- lapply(gtd_data[columnas_factores], as.factor)
 
 # ------------- Creación de tabla (matriz) ----------------
 num_filas <- length(names(gtd_data))
@@ -213,9 +222,9 @@ for (i in 1:num_filas) {
 print(info_atributos)
                     
 info_df <- as.data.frame(info_atributos)
-# Guardar como CSV
+# Guardar como CSV para una mejor visualización
 write.csv(info_df, file = "informacion_atributos.csv", row.names = TRUE)
- #-----------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------
                                 #CORRELACIÓN (Preguntas)
 #------------------------------------------------------------------------------------------
 
