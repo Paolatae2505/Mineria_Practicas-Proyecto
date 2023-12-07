@@ -1,4 +1,5 @@
-gtd_data_orig <- read.csv("globalterrorismdb_0718dist.csv")
+gtd_data_orig <- read.csv("datosPrepTerrorismoNumericos.csv")
+ncol(gtd_data_orig)
 
 # Muestreo del 10%
 porcentaje_muestreo <- 0.1
@@ -8,8 +9,8 @@ tamano_muestra <- round(nrow(gtd_data_orig) * porcentaje_muestreo)
 set.seed(123)
 
 # Realizamos el muestreo
-gtd_data <- gtd_data[sample(nrow(gtd_data_orig), tamano_muestra), ]
-
+gtd_data <- gtd_data_orig[sample(nrow(gtd_data_orig), tamano_muestra), ]
+ncol(gtd_data)
 # Muestra el resumen de la muestra
 summary(gtd_data)
 
@@ -85,7 +86,7 @@ summary(prueba)
 # Usamos las características obtenidas en preprocesamiento o usamos todo??
 
 # caracteristicas de preprocesamiento: ------------------------
-#library(dplyr)
+library(dplyr)
 #library(mlbench)
 #library(FSelector)
 # Utilizando el enfoque de filtros para reducir dimensiones, calcular los pesos
@@ -119,45 +120,65 @@ form
 # install.packages("neuralnet")
 library(neuralnet)
 
-#Entrenamos la red neuronal
+#Entrenamos las red neuronales:
 # Params: atributos, conjunto de entrenamiento, num de neuronas capa oculta , false categ/ true numerica
-red <- neuralnet(form,entrena,hidden=9,linear.output=FALSE) # pasar a numericos para que funcione
+# https://cran.r-project.org/web/packages/neuralnet/neuralnet.pdf (pag. 7)
 
-#Graficamos la red neuronal
-plot(red)
-red
-summary(red)
+# Red Neuronal 1
+red1 <- neuralnet(form,entrena,hidden=9,linear.output=FALSE)
 
-# Veamos los resultados del entrenamiento
-out <- cbind(red$covariate, +red$net.result[[1]])
-out
+# Red Neuronal 2 : 2 capas ocultas con 12 nodos
+red2 <- neuralnet(form, entrena, hidden = c(12, 12), linear.output = FALSE)
 
-#Vamos a poner los nombres de columnas
-# library(dplyr)
-out <- out %>% as.data.frame %>% rename(NO = 16, YES = 17)
+# Red Neuronal 3 : tasa de aprend. de 0.01
+red3 <- neuralnet(form, entrena, hidden = 9, linear.output = FALSE, learningrate = 0.01)
 
-head(out)
-colnames(out)
+# Red Neuronal 4
+red4 <- neuralnet(form, entrena, hidden = 9, linear.output = FALSE, algorithm = "rprop+")
 
-# Probamos el modelo entrenado
-# Calcular las predicciones sobre el conjunto de prueba
-prediccion <- predict(red,prueba)
+# Red Neuronal 5 : se repite 50 veces
+red5 <- neuralnet(form, entrena, hidden = 9, linear.output = FALSE, rep = 50)
 
-prediccion
+# falta red con momentum modificado
 
-# Verificar los resultados
-print(head(round(prediccion,2)))
+graficar_y_evaluar_red <- function(nombre, red, conjunto_entrenamiento, conjunto_prueba, labels = c("success", "no success")) {
+    print(nombre)
+  # Graficamos la red neuronal
+  plot(red)
+  summary(red)
 
-prediccion_c <-round(prediccion,2)
-# Ahora vamos a crear una matriz de confusión simple:
-labels <- c("success", "no success")
+  # Veamos los resultados del entrenamiento
+  out <- cbind(red$covariate, +red$net.result[[1]])
 
-# Red 1
-prediction_label <- data.frame(max.col(prediccion_c)) %>%
-  mutate(prediccion_c=labels[max.col.prediccion_c.]) %>%
-  select(2) %>%
-  unlist()
-table(prueba$success, prediction_label)
+  # Ponemos nombres de columnas
+  out <- out %>% as.data.frame %>% rename(NO = 16, YES = 17)
+
+  # Probamos el modelo entrenado
+  prediccion <- predict(red, conjunto_prueba)
+  print(head(round(prediccion, 2)))
+
+  prediccion_c <- round(prediccion, 2)
+  
+  # Creamos una matriz de confusión simple
+  prediction_label <- data.frame(max.col(prediccion_c)) %>%
+    mutate(prediccion_c = labels[max.col.prediccion_c.]) %>%
+    select(2) %>%
+    unlist()
+  
+  confusion_matrix <- table(conjunto_prueba$success, prediction_label)
+  print(confusion_matrix)
+  
+  # Puedes retornar o imprimir cualquier otra métrica que desees evaluar
+  
+  # También podrías retornar la matriz de confusión para su posterior análisis
+  return(confusion_matrix)
+}
+
+confusion_red1 <- graficar_y_evaluar_red("red1", red1, entrena, prueba)
+confusion_red2 <- graficar_y_evaluar_red("red2", red2, entrena, prueba)
+confusion_red3 <- graficar_y_evaluar_red("red3", red3, entrena, prueba)
+confusion_red4 <- graficar_y_evaluar_red("red4", red4, entrena, prueba)
+confusion_red5 <- graficar_y_evaluar_red("red5", red5, entrena, prueba)
 
 # --- EVALUACION ---
 # Guardar las variables para la evaluación
