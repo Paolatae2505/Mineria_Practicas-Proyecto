@@ -61,12 +61,13 @@ rpart.plot(arbol2,main = "Exito de ataque")
 # Obtenemos la matriz de confusión de las predicciones: prediccion_2
 prediccion_2 <- predict(arbol2, newdata = gtd_prueba,type = "class")
 
-# -- EVALUACION FINAL ---
+# --- EVALUACION ---
 # cambiar según quien tenga al finalizar los mejores valores
 conf_matrix <- confusionMatrix(prediccion_1, as.factor(gtd_prueba[["success"]]))
-TN <- conf_matrix[["table"]][1]
-FP <- conf_matrix[["table"]][2]
-FN <- conf_matrix[["table"]][3]
-TP <- conf_matrix[["table"]][4]
-source("Medidas.R") #cambiar según ruta del git
-medidas <- tabla_medidas(TP,TN,FP,FN)
+# Guardar las variables para la evaluación
+TP <- conf_matrix[["table"]][1]
+TN <- conf_matrix[["table"]][2]
+FP <- conf_matrix[["table"]][3]
+FN <- conf_matrix[["table"]][4]
+confusionRedNeuronal <- c(TP, TN, FP, FN)
+save(confusionRedNeuronal, file = "confusionArbolCART.RData")
