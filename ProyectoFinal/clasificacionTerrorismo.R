@@ -75,17 +75,6 @@ rpart.plot(arbol3, main = "Árbol con profundidad máxima ajustada a 5")
 prediccion_3 <- predict(arbol2, newdata = gtd_prueba,type = "class")
 confusionMatrix(prediccion_3, as.factor(gtd_prueba[["success"]]))
 
-# --- EVALUCION FINAL ---
-# cambiar según quien tenga al finalizar los mejores valores
-conf_matrix <- confusionMatrix(prediccion_1, as.factor(gtd_prueba[["success"]]))
-TN <- conf_matrix[["table"]][1]
-FP <- conf_matrix[["table"]][2]
-FN <- conf_matrix[["table"]][3]
-TP <- conf_matrix[["table"]][4]
-source("Medidas.R") #cambiar según ruta del git
-medidas <- tabla_medidas(TP,TN,FP,FN)
-
-
 
 # -----------------------------------------------------------------------------
 # ------------------------------ Red Neuronal ---------------------------------
@@ -273,11 +262,4 @@ confusion_red3 <- graficar_y_evaluar_red("red3", red3, entrena, prueba)
 confusion_red4 <- graficar_y_evaluar_red("red4", red4, entrena, prueba)
 confusion_red5 <- graficar_y_evaluar_red("red5", red5, entrena, prueba)
 
-# --- EVALUACION ---
-# Guardar las variables para la evaluación
-TP <- 1
-TN <- 2
-FP <- 3
-FN <- 4
-confusionRedNeuronal <- c(TP, TN, FP, FN)
-save(confusionRedNeuronal, file = "confusionRedNeuronal.RData")
+
