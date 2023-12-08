@@ -9,11 +9,21 @@ install.packages("arules")
 # Cargar las bibliotecas necesarias
 library(arules)
 library(arulesViz)
-gtd_data <- read.csv("/home/paola/Documentos/SeptimoSemestre/MYAD/Practicas/PGIT/Mineria_Practicas-Proyecto/ProyectoFinal/globalterrorismdb_0718dist.csv")
+gtd_data <- read.csv("datosPrepTerrorismoNormalizadoSome.csv")
 
 ###########################################################################
                       # MÉTODO APRIORI 
 ###########################################################################
+
+porcentaje_muestreo <- 0.1
+tamano_muestra <- round(nrow(gtd_data) * porcentaje_muestreo)
+
+set.seed(123)
+gtd_data <- gtd_data[sample(nrow(gtd_data), tamano_muestra), ]
+
+num_filas <- nrow(gtd_data)
+print(num_filas)
+
 # Crear un objeto de transacciones (asegúrate de que tu conjunto de datos tenga la estructura adecuada)
 transacciones <- as(gtd_data [, -1], "transactions")
 
