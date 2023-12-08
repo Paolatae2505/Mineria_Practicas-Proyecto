@@ -248,13 +248,15 @@ correlation_matrix <- cor(gtd_data)
 
 
 print(correlation_matrix)
-#Variables objetivo
+#--------------------------------------------------
+# Variables objetivo consideradas
 subset_data <- gtd_data[c("success", "city", "attacktype1","attacktype2","attacktype3")]
 correlation_matrix_subset <- cor(subset_data)
 print(correlation_matrix_subset)
 
 
-
+#---------------------------------------
+#Mas correlacionadas
 umbral <- 0.7  
 
 # Encontrar pares de variables con correlación superior al umbral
@@ -293,3 +295,46 @@ print(cor_attacktype2)
 
 print("Correlaciones con attacktype3:")
 print(cor_attacktype3)
+
+
+#--------------------------------------------------------
+#Menos correlacionadas
+umbral <- 0.4
+
+# Encontrar pares de variables con correlación inferior al umbral
+correlation_pairs <- which(abs(correlation_matrix) < umbral & correlation_matrix != 1, arr.ind = TRUE)
+
+# Filtrar las variables únicas de los pares encontrados
+variables_con_correlacion_baja <- unique(c(row.names(correlation_pairs), colnames(correlation_pairs)))
+
+# Variables menos relacionadas con success
+cor_success <- correlation_matrix["success", ]
+
+# Variables menos relacionadas con city
+cor_city <- correlation_matrix["city", ]
+
+# Variables menos relacionadas con attacktype1
+cor_attacktype1 <- correlation_matrix["attacktype1", ]
+
+# Variables menos relacionadas con attacktype2
+cor_attacktype2 <- correlation_matrix["attacktype2", ]
+
+# Variables menos relacionadas con attacktype3
+cor_attacktype3 <- correlation_matrix["attacktype3", ]
+
+# Imprimir los resultados
+print("Correlaciones menos relevantes con success:")
+print(cor_success)
+
+print("Correlaciones menos relevantes con city:")
+print(cor_city)
+
+print("Correlaciones menos relevantes con attacktype1:")
+print(cor_attacktype1)
+
+print("Correlaciones menos relevantes con attacktype2:")
+print(cor_attacktype2)
+
+print("Correlaciones menos relevantes con attacktype3:")
+print(cor_attacktype3)
+
