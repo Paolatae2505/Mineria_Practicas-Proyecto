@@ -60,10 +60,9 @@ tabla_medidas  <- function(TP,TN, FP, FN){
   medidas[1, 12] = kappa(TP,TN, FP, FN,E)
   return(medidas)
 }
-
-load("confusionArbolCART.RData")
+confusionArbolCART <- c(365,352,327,320)
+confusionRedNeuronal <- c(5966,6068,0,1)
 medidas_arbol <- tabla_medidas(confusionArbolCART[1],confusionArbolCART[2],confusionArbolCART[3],confusionArbolCART[4])
 print(medidas_arbol)
-load("confusionRedNeuronal.RData")
 medidas_red <- tabla_medidas(confusionRedNeuronal[1],confusionRedNeuronal[2],confusionRedNeuronal[3],confusionRedNeuronal[4])
 print(medidas_red)
