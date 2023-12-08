@@ -264,13 +264,16 @@ library(dplyr)
 library(ggplot2) 
 
 # Discretizar por rango
-discretizar_por_rango <- function(data, num_bins = 10) { # Usar sturges para la cantidad de bins
+discretizar_por_rango <- function(data) {
   # Identificar columnas numéricas
   columnas_numericas <- sapply(data, is.numeric)
 
   for (columna in names(data)[columnas_numericas]) {
     # Verificar el rango de la columna antes de discretizar
     cat("Rango de", columna, ":", range(data[[columna]]), "\n")
+
+    # Calcular el número de bins utilizando la fórmula de Sturges
+    num_bins <- ceiling(log2(length(data[[columna]])) + 1)
     
     data[[columna]] <- cut_interval(data[[columna]], n = num_bins, dig.lab = 9)
   }
