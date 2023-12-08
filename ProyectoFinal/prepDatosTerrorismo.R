@@ -2,17 +2,15 @@
 gtd_data <- read.csv("globalterrorismdb_0718dist.csv")
 str(gtd_data)
 
-nrow(gtd_data)
-
 # ------------- LIMPIEZA PREVIA A LA SELECCIÓN -------------
-library(dplyr)
+
 # Convertimos a NA los espacios en blanco:
 
+library(dplyr)
 gtd_data_limpieza <- gtd_data %>% 
-    mutate_all(~ ifelse(. %in% c("", " ", "Unknown"), NA, .))
+    mutate_all(~ ifelse(. %in% c("", " ", "Unknown", -9,-99), NA, .))
 str(gtd_data_limpieza)
 # Quitamos versión _txt de los datos:
-
 
 columnas_txt <- grep("_txt$", names(gtd_data_limpieza), value = TRUE)
 print(columnas_txt)
@@ -55,6 +53,7 @@ crear_asociacion_unica_y_llenar <- function(gtd_data, variable1, variable2) {
   return(gtd_data)
 }
 
+
 # Recorrer las columnas que terminan en "_txt"
 for (columna in columnas_txt) {
     col_sin_txt <- quitar_terminacion_txt(columna)
@@ -95,13 +94,16 @@ gtd_data_limpieza <- eliminar_columnas_valores_perdidos(gtd_data_limpieza, 90)
 str(gtd_data_limpieza)
 ncol(gtd_data_limpieza)
 
+# Eliminamos columnas de forma manual
+columnas_a_eliminar <- c("location", "summary", "nwound", "propcomment", "addnotes", "scite2", "scite3", "related" )
+gtd_data_limpieza <- gtd_data_limpieza[, !(names(gtd_data_limpieza) %in% columnas_a_eliminar)]
+str(gtd_data_limpieza)
+
 # Utilizamos un muestreo del 10% para facilitar la ejecución
 #porcentaje_muestreo <- 0.1
 #tamano_muestra <- round(nrow(gtd_data_limpieza) * porcentaje_muestreo)
-
 #set.seed(123)
-#muestra <- gtd_data_limpieza[sample(nrow(gtd_data_limpieza), tamano_muestra), ]
-
+#muestra <- gtd_data_limpiado[sample(nrow(gtd_data_limpieza), tamano_muestra), ]
 # Observamos la muestra
 #summary(muestra)
 
@@ -111,8 +113,8 @@ gtd_data_s1 <- gtd_data_limpieza[gtd_data_limpieza$success == 1,]
 gtd_data_s0 <- gtd_data_limpieza[gtd_data_limpieza$success == 0,]
 occurrences_s0 <- nrow(gtd_data_s0)
 gtd_data_s1 <- gtd_data_s1[sample(nrow(gtd_data_s1), occurrences_s0),]
-gtd_data_C <- bind_rows(gtd_data_s1, gtd_data_s0)
-nrow(gtd_data_C)
+muestra <- bind_rows(gtd_data_s1, gtd_data_s0)
+
 # ---- SELECCION DE ATRIBUTOS CON CHI^2 -----
 
 library(dplyr)
@@ -124,7 +126,7 @@ library(FSelector)
 # print(correlaciones)
 
 # Utilizando el enfoque de filtros por chi cuadrada
-pesos <- chi.squared(success ~ ., data = gtd_data_C)
+pesos <- chi.squared(success ~ ., data = muestra)
 pesos
     
 # Pesos en orden de importancia
@@ -133,11 +135,11 @@ dotchart(pesos$attr_importance[orden],labels=rownames(pesos)[orden],xlab="Import
 subconjunto <- rownames(pesos)[pesos$attr_importance > 0]
 
 # Crea muestra con las variables que nos sirven
-gtd_data_seleccion <- gtd_data_C[, subconjunto]
+gtd_data_seleccion <- muestra[, subconjunto]
 # Paso eventid al principio:
 gtd_data_seleccion <- gtd_data_seleccion %>% select(eventid, everything())
 # Añado el atributo success al final
-success <- (gtd_data_C$success)
+success <- (muestra$success)
 gtd_data_seleccion <- cbind(gtd_data_seleccion, success)
 
 str(gtd_data_seleccion)
@@ -183,7 +185,7 @@ muestra <- muestra[sample(nrow(muestra), tamano_muestra),]
 # Observamos la muestra
 summary(muestra)
 # convertir a numeric los character y factor
-gtd_data_numeric<-data.frame(gtd_data_C)
+gtd_data_numeric<-data.frame(muestra)
 cols_names <- colnames(gtd_data)
 j <- 1
 set.seed(1)
@@ -257,9 +259,6 @@ columnas_con_nas <- colSums(is.na(gtd_data_sin_vp)) > 0
 columnas_con_nas <- names(columnas_con_nas[columnas_con_nas])
 print(columnas_con_nas)
 
-gtd_data_sin_vp <- imputacion(gtd_data_sin_vp)
-str(gtd_data_sin_vp)
-
 #---- DISCRETIZACIÓN -----
 library(dplyr)
 library(ggplot2) 
@@ -296,9 +295,7 @@ str(gtd_data_discretizado2)
 
 # ----- GENERACION CSV CON COLUMNAS NUMERICAS DISCRETIZADAS -----
 
-head(gtd_data_discretizado)
-nrow(gtd_data_discretizado)
-write.csv(gtd_data_discretizado, "gtd_data_discretizado_C.csv", row.names = TRUE)
+write.csv(gtd_data_discretizado2, "datosPrepTerrorismo.csv", row.names = TRUE)
 
 
 
@@ -309,29 +306,26 @@ min_max <- function(x) {
   return((x - min(x)) / (max(x) - min(x)))
 }
 
-class(columnas_numericas)
-
-# ----- GENERACION CSV CON COLUMNAS NUMERICAS NORMALIZADAS -----
+# ----- GENERACION CSV CON ÚNICAMENTE COLUMNAS NUMÉRICAS NORMALIZADAS -----
 
 # Seleccionar solo las columnas numéricas
-columnas_numericas <- sapply(gtd_data_discretizado, is.numeric)
-class(columnas_numericas)
+columnas_numericas <- sapply(gtd_data_sin_vp, is.numeric)
 # quitarle las columnas eventid y success al data set muestra
-gtd_data_num <- columnas_numericas[, !(colnames(columnas_numericas) %in% c('eventid', 'success'))]
+gtd_data_num <- gtd_data_sin_vp[, !(colnames(gtd_data_sin_vp) %in% c('eventid', 'success'))]
 str(gtd_data_num)
 # Aplicar normalización solo a las columnas numéricas
 gtd_data_normalizado_some <- as.data.frame(lapply(gtd_data_num, function(x) if (is.numeric(x)) min_max(x) else x))
 str(gtd_data_normalizado_some)
-eventid <- (gtd_data_discretizado$eventid)
+eventid <- (gtd_data_sin_vp$eventid)
 gtd_data_normalizado <- cbind(eventid, gtd_data_normalizado_some)
-success <- (gtd_data_discretizado$success)
+success <- (gtd_data_sin_vp$success)
 gtd_data_normalizado_some <- cbind(gtd_data_normalizado, success)
 
 head(gtd_data_normalizado_some)
 str(gtd_data_discretizado)
 str(gtd_data_normalizado_some)
                                              
-write.csv(gtd_data_normalizado_some, "gtd_data_normalizado_some.csv", row.names = TRUE)
+write.csv(gtd_data_normalizado_some, "datosPrepTerrorismoNormalizadoSome.csv", row.names = TRUE)
 
 # ----- GENERACION CSV CON TODAS LAS COLUMNAS NUMERICAS Y NORMALIZADAS -----
 
@@ -363,6 +357,4 @@ success <- (gtd_data_numerico$success)
 gtd_data_normalizado_all <- cbind(gtd_data_normalizado_all2, success)
 str(gtd_data_normalizado_all)
 
-write.csv(gtd_data_normalizado_all, "gtd_data_normalizado_all_C.csv", row.names = TRUE)
-nrow(gtd_data_normalizado_all)
-nrow(gtd_data_C)
+write.csv(gtd_data_normalizado_all, "datosPrepTerrorismoNumerico", row.names = TRUE)
