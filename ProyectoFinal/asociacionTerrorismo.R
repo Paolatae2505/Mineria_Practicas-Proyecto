@@ -198,6 +198,15 @@ quality(reglas) <- cbind(quality(reglas), metricas)
 df_reglas <- as(reglas, Class = "data.frame") 
 df_reglas %>% as.tibble() %>% arrange(desc(confidence)) %>% head()
 
+##########################################################################
+# Filtrado de reglas con Succes 
+#################################################################3
+reglas_succes <- apriori(data = transacciones,
+                            parameter = list(support = soporteLev[5],
+                                             confidence = confianzaLev[1],
+                                             # Se especifica que se creen reglas
+                                             target = "rules"),
+                            appearance= list(rhs="sucess"))
 #############################################################################
 # MÉTODO ECLAT
 #############################################################################
@@ -366,3 +375,14 @@ quality(reglas) <- cbind(quality(reglas), metricas)
 # inspect(sort(x = reglas, decreasing = TRUE, by = "confidence"))
 df_reglas <- as(reglas, Class = "data.frame") 
 df_reglas %>% as_tibble() %>% arrange(desc(confidence)) %>% head()
+
+
+##########################################################################
+# Filtrado de reglas con Succes 
+#################################################################3
+reglas_succes <- apriori(data = transacciones,
+                         parameter = list(support = soporteLev[5],
+                                          confidence = confianzaLev[1],
+                                          # Se especifica que se creen reglas
+                                          target = "rules"),
+                         appearance= list(rhs="sucess"))
